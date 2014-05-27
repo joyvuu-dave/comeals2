@@ -2,10 +2,17 @@
 #
 # Table name: meals
 #
-#  id         :integer          not null, primary key
-#  date       :datetime
-#  created_at :datetime
-#  updated_at :datetime
+#  id          :integer          not null, primary key
+#  date        :date             not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  multiplier  :integer          default(0), not null
+#  total_cost  :integer          default(0), not null
+#  bills_count :integer          default(0), not null
+#
+# Indexes
+#
+#  index_meals_on_date  (date) UNIQUE
 #
 
 require 'spec_helper'

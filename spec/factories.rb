@@ -20,7 +20,7 @@ FactoryGirl.define do
   factory :bill do
     meal
     resident
-    cost { Faker::Number.number(4) }
+    amount { Faker::Number.number(4) }
   end
 
 

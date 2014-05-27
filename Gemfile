@@ -35,6 +35,11 @@ gem 'sextant'
 gem 'factory_girl_rails', '4.4.1'
 gem 'database_cleaner'
 gem 'pry-rails'
+gem 'foreigner'
+gem 'immigrant'
+gem 'rails_best_practices'
+gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'devise'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
