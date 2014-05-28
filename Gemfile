@@ -14,6 +14,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'pg'
 gem 'foreigner'
 gem 'immigrant'
+gem 'postmark-rails'
 
 
 
