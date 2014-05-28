@@ -6,8 +6,6 @@
 #  date        :date             not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  multiplier  :integer          default(0), not null
-#  total_cost  :integer          default(0), not null
 #  bills_count :integer          default(0), not null
 #
 # Indexes
@@ -26,16 +24,6 @@ class Meal < ActiveRecord::Base
   accepts_nested_attributes_for :meal_residents, allow_destroy: true
 
 
-  # CALLBACKS
-  after_create :set_multiplier_on_create
-
-
-  before_save(on: :edit) do
-    self.multiplier = residents.sum('multiplier')
-  end
-
-
-
 
   # HELPERS
   def number_of_diners
@@ -43,16 +31,12 @@ class Meal < ActiveRecord::Base
   end
 
 
-  def set_multiplier_on_create
-    mult = residents.sum('multiplier')
-    self.multiplier = mult
-    save
+  def multiplier
+    residents.sum('multiplier')
   end
 
 
-  def set_total_cost
-    cost = bills.sum('amount')
-    self.total_cost = cost
-    save
+  def total_cost
+    bills.sum('amount')
   end
 end

@@ -1,6 +1,18 @@
 ActiveAdmin.register AdminUser do
+  # STRONG PARAMS
   permit_params :email, :password, :password_confirmation
 
+
+  # CONFIG
+  config.filters = false
+  config.paginate = false
+
+
+  # ACTIONS
+  actions :all, except: [:new, :show, :destroy]
+
+
+  # INDEX
   index do
     selectable_column
     id_column
@@ -8,14 +20,12 @@ ActiveAdmin.register AdminUser do
     column :current_sign_in_at
     column :sign_in_count
     column :created_at
+
     actions
   end
 
-  filter :email
-  filter :current_sign_in_at
-  filter :sign_in_count
-  filter :created_at
 
+  # FORM
   form do |f|
     f.inputs "Admin Details" do
       f.input :email

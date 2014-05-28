@@ -2,13 +2,13 @@
 #
 # Table name: bills
 #
-#  id          :integer          not null, primary key
-#  meal_id     :integer          not null
-#  resident_id :integer          not null
-#  amount      :integer          default(0), not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  unit_cost   :integer          default(0), not null
+#  id             :integer          not null, primary key
+#  meal_id        :integer          not null
+#  resident_id    :integer          not null
+#  amount         :integer          default(0), not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  amount_decimal :decimal(12, 2)   default(0.0), not null
 #
 # Indexes
 #
@@ -28,21 +28,27 @@ class Bill < ActiveRecord::Base
   # VALIDATION
   validates :meal, presence: true
   validates :resident, presence: true
+  validates :amount_decimal, numericality: true
 
 
   # CALLBACKS
-  before_save(on: :edit) do
-    self.unit_cost = multiplier > 0 ? adj_amount / multiplier : 0
+  before_save :set_amount
+
+
+  # VIRTUAL ATTRIBUTES
+  def set_amount
+    self.amount = Integer(amount_decimal * 100)
   end
 
-  after_create :set_unit_cost_on_create
-  after_update :set_resident_balances
-  after_update :set_meal_total_cost
+
+  def unit_cost
+    multiplier > 0 ? adj_amount / multiplier : 0
+  end
 
 
   # HELPERS
-  def mod
-    multiplier > 0 ? amount % multiplier : 0
+  def adj_amount
+    amount + diff
   end
 
 
@@ -51,26 +57,7 @@ class Bill < ActiveRecord::Base
   end
 
 
-  def adj_amount
-    amount + diff
-  end
-
-
-  def set_unit_cost_on_create
-    cost = multiplier > 0 ? adj_amount / multiplier : 0
-    self.unit_cost = cost
-    save
-  end
-
-
-  def set_resident_balances
-    meal.residents.each do |resident|
-      resident.set_balance
-    end
-  end
-
-
-  def set_meal_total_cost
-    meal.set_total_cost
+  def mod
+    multiplier > 0 ? amount % multiplier : 0
   end
 end

@@ -40,6 +40,7 @@ gem 'immigrant'
 gem 'rails_best_practices'
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'devise'
+gem 'quiet_assets', group: :development
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

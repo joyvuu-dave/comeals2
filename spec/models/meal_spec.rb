@@ -6,8 +6,6 @@
 #  date        :date             not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  multiplier  :integer          default(0), not null
-#  total_cost  :integer          default(0), not null
 #  bills_count :integer          default(0), not null
 #
 # Indexes

@@ -5,7 +5,6 @@
 #  id         :integer          not null, primary key
 #  name       :string(255)      not null
 #  multiplier :integer          default(2), not null
-#  balance    :integer          default(0), not null
 #  unit_id    :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

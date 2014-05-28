@@ -6,7 +6,6 @@
 #  name            :string(255)      not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  balance         :integer          default(0), not null
 #  residents_count :integer          default(0), not null
 #
 # Indexes
@@ -25,9 +24,11 @@ class Unit < ActiveRecord::Base
   end
 
 
-  def set_balance
-    bal = residents.sum('balance')
-    self.balance = bal
-    save
+  def balance
+    sum = 0
+    residents.each do |resident|
+      sum += resident.balance
+    end
+    sum
   end
 end

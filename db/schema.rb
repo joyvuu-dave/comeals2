@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140527160308) do
+ActiveRecord::Schema.define(version: 20140528015932) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -47,12 +47,12 @@ ActiveRecord::Schema.define(version: 20140527160308) do
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
   create_table "bills", force: true do |t|
-    t.integer  "meal_id",                 null: false
-    t.integer  "resident_id",             null: false
-    t.integer  "amount",      default: 0, null: false
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.integer  "unit_cost",   default: 0, null: false
+    t.integer  "meal_id",                                               null: false
+    t.integer  "resident_id",                                           null: false
+    t.integer  "amount",                                  default: 0,   null: false
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
+    t.decimal  "amount_decimal", precision: 12, scale: 2, default: 0.0, null: false
   end
 
   add_index "bills", ["meal_id"], name: "index_bills_on_meal_id"
@@ -71,8 +71,6 @@ ActiveRecord::Schema.define(version: 20140527160308) do
     t.date     "date",                    null: false
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
-    t.integer  "multiplier",  default: 0, null: false
-    t.integer  "total_cost",  default: 0, null: false
     t.integer  "bills_count", default: 0, null: false
   end
 
@@ -81,7 +79,6 @@ ActiveRecord::Schema.define(version: 20140527160308) do
   create_table "residents", force: true do |t|
     t.string   "name",                   null: false
     t.integer  "multiplier", default: 2, null: false
-    t.integer  "balance",    default: 0, null: false
     t.integer  "unit_id",                null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
@@ -93,7 +90,6 @@ ActiveRecord::Schema.define(version: 20140527160308) do
     t.string   "name",                        null: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
-    t.integer  "balance",         default: 0, null: false
     t.integer  "residents_count", default: 0, null: false
   end
 
