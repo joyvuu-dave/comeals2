@@ -25,5 +25,8 @@
 require 'spec_helper'
 
 describe AdminUser do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'can create an AdminUser' do
+    admin = create(:admin_user)
+    expect(admin).to be_valid
+  end
 end

@@ -23,6 +23,10 @@ class Resident < ActiveRecord::Base
   has_many :meals, through: :meal_residents
 
 
+  # VALIDATIONS
+  validates :unit, presence: true
+
+
   def balance
     total_bills - total_meals
   end

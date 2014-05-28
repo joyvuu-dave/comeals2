@@ -15,6 +15,9 @@
 
 require 'spec_helper'
 
-describe MealResidents do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe MealResident do
+  it 'can create a MealResident' do
+    meal_resident = create(:meal_resident)
+    expect(meal_resident).to be_valid
+  end
 end

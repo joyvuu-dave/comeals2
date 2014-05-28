@@ -1,6 +1,15 @@
 FactoryGirl.define do
-  factory :unit do
-    sequence(:name) { |n| "Unit #{n}" }
+  factory :admin_user do
+    sequence(:email) { |n| "person#{n}@example.com" }
+    password "password"
+    password_confirmation "password"
+  end
+
+
+  factory :bill do
+    meal
+    resident
+    amount_decimal { Faker::Number.number(3) }
   end
 
 
@@ -9,24 +18,20 @@ FactoryGirl.define do
   end
 
 
+  factory :meal_resident do
+    meal
+    resident
+  end
+
+
+  factory :unit do
+    sequence(:name) { |n| "Unit #{n}" }
+  end
+
+
   factory :resident do
     name { Faker::Name.name }
     multiplier { Faker::Number.digit }
-    balance { Faker::Number.number(6) }
     unit
-  end
-
-
-  factory :bill do
-    meal
-    resident
-    amount { Faker::Number.number(4) }
-  end
-
-
-  factory :attendance do
-    meal
-    resident
-    multiplier { Faker::Number.digit }
   end
 end

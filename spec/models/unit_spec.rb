@@ -16,7 +16,7 @@
 require 'spec_helper'
 
 describe Unit do
-  it 'can create a unit' do
+  it 'can create a Unit' do
     unit = create(:unit)
     expect(unit).to be_valid
   end

@@ -16,7 +16,7 @@
 require 'spec_helper'
 
 describe Meal do
-  it 'can create a meal' do
+  it 'can create a Meal' do
     meal = create(:meal)
     expect(meal).to be_valid
   end

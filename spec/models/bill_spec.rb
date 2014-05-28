@@ -19,7 +19,7 @@
 require 'spec_helper'
 
 describe Bill do
-  it 'can create a bill' do
+  it 'can create a Bill' do
     bill = create(:bill)
     expect(bill).to be_valid
   end

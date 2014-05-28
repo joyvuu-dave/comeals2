@@ -17,7 +17,7 @@
 require 'spec_helper'
 
 describe Resident do
-  it 'can create a resident' do
+  it 'can create a Resident' do
     resident = create(:resident)
     expect(resident).to be_valid
   end
