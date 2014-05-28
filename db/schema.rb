@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140528015932) do
+ActiveRecord::Schema.define(version: 20140528055810) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -24,9 +27,9 @@ ActiveRecord::Schema.define(version: 20140528015932) do
     t.datetime "updated_at"
   end
 
-  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
-  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace"
-  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
+  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
+  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
 
   create_table "admin_users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -43,8 +46,8 @@ ActiveRecord::Schema.define(version: 20140528015932) do
     t.datetime "updated_at"
   end
 
-  add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
-  add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
+  add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "bills", force: true do |t|
     t.integer  "meal_id",                                               null: false
@@ -55,8 +58,8 @@ ActiveRecord::Schema.define(version: 20140528015932) do
     t.decimal  "amount_decimal", precision: 12, scale: 2, default: 0.0, null: false
   end
 
-  add_index "bills", ["meal_id"], name: "index_bills_on_meal_id"
-  add_index "bills", ["resident_id"], name: "index_bills_on_resident_id"
+  add_index "bills", ["meal_id"], name: "index_bills_on_meal_id", using: :btree
+  add_index "bills", ["resident_id"], name: "index_bills_on_resident_id", using: :btree
 
   create_table "meal_residents", force: true do |t|
     t.integer  "meal_id",     null: false
@@ -65,7 +68,7 @@ ActiveRecord::Schema.define(version: 20140528015932) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "meal_residents", ["meal_id", "resident_id"], name: "index_meal_residents_on_meal_id_and_resident_id"
+  add_index "meal_residents", ["meal_id", "resident_id"], name: "index_meal_residents_on_meal_id_and_resident_id", using: :btree
 
   create_table "meals", force: true do |t|
     t.date     "date",                    null: false
@@ -74,7 +77,7 @@ ActiveRecord::Schema.define(version: 20140528015932) do
     t.integer  "bills_count", default: 0, null: false
   end
 
-  add_index "meals", ["date"], name: "index_meals_on_date", unique: true
+  add_index "meals", ["date"], name: "index_meals_on_date", unique: true, using: :btree
 
   create_table "residents", force: true do |t|
     t.string   "name",                   null: false
@@ -84,7 +87,7 @@ ActiveRecord::Schema.define(version: 20140528015932) do
     t.datetime "updated_at",             null: false
   end
 
-  add_index "residents", ["name"], name: "index_residents_on_name", unique: true
+  add_index "residents", ["name"], name: "index_residents_on_name", unique: true, using: :btree
 
   create_table "units", force: true do |t|
     t.string   "name",                        null: false
@@ -93,6 +96,14 @@ ActiveRecord::Schema.define(version: 20140528015932) do
     t.integer  "residents_count", default: 0, null: false
   end
 
-  add_index "units", ["name"], name: "index_units_on_name", unique: true
+  add_index "units", ["name"], name: "index_units_on_name", unique: true, using: :btree
+
+  add_foreign_key "bills", "meals", name: "bills_meal_id_fk"
+  add_foreign_key "bills", "residents", name: "bills_resident_id_fk"
+
+  add_foreign_key "meal_residents", "meals", name: "meal_residents_meal_id_fk"
+  add_foreign_key "meal_residents", "residents", name: "meal_residents_resident_id_fk"
+
+  add_foreign_key "residents", "units", name: "residents_unit_id_fk"
 
 end
