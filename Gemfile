@@ -12,6 +12,8 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'pg'
+gem 'foreigner'
+gem 'immigrant'
 
 
 
@@ -41,8 +43,6 @@ end
 group :development do
   gem 'spring'
   gem 'annotate'
-  gem 'foreigner'
-  gem 'immigrant'
   gem 'sextant'
   gem 'pry-rails'
   gem 'quiet_assets'
