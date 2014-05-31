@@ -19,8 +19,11 @@ class Resident < ActiveRecord::Base
   belongs_to :unit, counter_cache: true
 
   has_many :bills, dependent: :destroy
+
   has_many :meal_residents, dependent: :destroy
   has_many :meals, through: :meal_residents
+
+  has_many :guests, dependent: :destroy
 
 
   # VALIDATIONS
@@ -28,17 +31,17 @@ class Resident < ActiveRecord::Base
 
 
   def balance
-    total_bills - total_meals
+    sum_of_bills - total_meal_costs - total_guest_costs
   end
 
 
   # HELPERS
-  def total_bills
+  def sum_of_bills
     bills.sum('amount')
   end
 
 
-  def total_meals
+  def total_meal_costs
     result = 0
     meals.each do |meal|
       meal.bills.each do |bill|
@@ -46,5 +49,15 @@ class Resident < ActiveRecord::Base
       end
     end
     result
+  end
+
+
+  def total_guest_costs
+    result = 0
+    guests.each do |guest|
+      guest.meal.bills.each do |bill|
+        result += guest.multiplier * bill.unit_cost
+      end
+    end
   end
 end

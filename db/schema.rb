@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140531192123) do
+ActiveRecord::Schema.define(version: 20140531192755) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,15 @@ ActiveRecord::Schema.define(version: 20140531192123) do
 
   add_index "bills", ["meal_id"], name: "index_bills_on_meal_id", using: :btree
   add_index "bills", ["resident_id"], name: "index_bills_on_resident_id", using: :btree
+
+  create_table "guests", force: true do |t|
+    t.string   "name",                    null: false
+    t.integer  "multiplier",  default: 2, null: false
+    t.integer  "meal_id",                 null: false
+    t.integer  "resident_id",             null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "meal_residents", force: true do |t|
     t.integer  "meal_id",     null: false

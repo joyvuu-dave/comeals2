@@ -34,4 +34,12 @@ FactoryGirl.define do
     multiplier { Faker::Number.digit }
     unit
   end
+
+
+  factory :guest do
+    name { Faker::Name.name }
+    multiplier { Faker::Number.digit }
+    meal
+    resident
+  end
 end

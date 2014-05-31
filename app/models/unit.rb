@@ -18,6 +18,10 @@ class Unit < ActiveRecord::Base
   has_many :residents, dependent: :destroy
 
 
+  # VALIDATIONS
+  validates :name, presence: true
+
+
   # HELPERS
   def number_of_occupants
     residents.size

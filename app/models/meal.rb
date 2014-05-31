@@ -18,21 +18,26 @@ class Meal < ActiveRecord::Base
   has_many :meal_residents, dependent: :destroy
   has_many :residents, through: :meal_residents
 
+  has_many :guests, dependent: :destroy
   has_many :bills, dependent: :destroy
 
 
-  accepts_nested_attributes_for :meal_residents, allow_destroy: true
+  accepts_nested_attributes_for :meal_residents, :guests, allow_destroy: true
+
+
+  # VALIDATIONS
+  validates :date, presence: true
 
 
 
   # HELPERS
   def number_of_diners
-    residents.size
+    residents.size + guests.size
   end
 
 
   def multiplier
-    residents.sum('multiplier')
+    residents.sum('multiplier') + guests.sum('multiplier')
   end
 
 
