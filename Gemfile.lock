@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/gregbell/active_admin.git
-  revision: b6fb7175c0a3a0e485ceb2007ae8da22aacf6c2d
+  revision: 021843bd48627d19ab63a2f08c6d7f12b62c3714
   specs:
     activeadmin (1.0.0.pre)
       arbre (~> 1.0)
@@ -124,8 +124,8 @@ GEM
     pg (0.17.1)
     polyamorous (1.0.0)
       activerecord (>= 3.0)
-    polyglot (0.3.4)
-    postmark (1.2.0)
+    polyglot (0.3.5)
+    postmark (1.2.1)
       json
       rake
     postmark-rails (0.7.0)
