@@ -46,11 +46,11 @@ class Meal < ActiveRecord::Base
   end
 
 
-  def cost_per_person
+  def cost_per_adult
     result = 0
     bills.each do |bill|
       result += bill.unit_cost
     end
-    result
+    result * 2
   end
 end
