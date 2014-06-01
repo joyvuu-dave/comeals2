@@ -59,5 +59,6 @@ class Resident < ActiveRecord::Base
         result += guest.multiplier * bill.unit_cost
       end
     end
+    result
   end
 end
