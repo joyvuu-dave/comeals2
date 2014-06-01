@@ -15,9 +15,4 @@ class Guest < ActiveRecord::Base
   # ASSOCIATIONS
   belongs_to :meal
   belongs_to :resident
-
-
-  # VALIDATIONS
-  validates :meal, presence: true
-  validates :resident, presence: true
 end
