@@ -23,4 +23,9 @@ $( ->
     if $(this).text()
       $(this).text(moment($(this).text()).format('ddd, MMM D'))
   )
+
+
+  # Bring name field into focus when adding a new resident
+  if window.location.pathname == '/residents/new'
+    $('#resident_name').focus()
 )
