@@ -19,7 +19,7 @@ class Unit < ActiveRecord::Base
 
 
   # VALIDATIONS
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
 
 
   # HELPERS
