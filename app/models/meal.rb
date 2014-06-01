@@ -44,4 +44,13 @@ class Meal < ActiveRecord::Base
   def total_cost
     bills.sum('amount')
   end
+
+
+  def cost_per_person
+    result = 0
+    bills.each do |bill|
+      result += bill.unit_cost
+    end
+    result
+  end
 end

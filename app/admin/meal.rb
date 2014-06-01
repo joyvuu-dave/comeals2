@@ -16,8 +16,11 @@ ActiveAdmin.register Meal do
   index do
     column :date
     column :number_of_diners
-    column '$', :total_cost do |meal|
+    column :total_cost do |meal|
       number_with_precision((meal.total_cost.to_f / 100), precision: 2) unless meal.total_cost == 0
+    end
+    column :cost_per_person do |meal|
+      number_with_precision((meal.cost_per_person.to_f / 100), precision: 2) unless meal.cost_per_person == 0
     end
 
     actions
