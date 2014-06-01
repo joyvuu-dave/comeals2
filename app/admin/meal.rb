@@ -35,7 +35,7 @@ ActiveAdmin.register Meal do
         g.input :_destroy, as: :hidden
         g.input :name
         g.input :multiplier, label: 'Price Category', as: :select, include_blank: false, collection: [['Adult', 2], ['Child', 1]]
-        g.input :resident, label: 'Host'
+        g.input :resident, label: 'Host', collection: Resident.order('name')
         g.input :meal_id, as: :hidden, input_html: { value: meal.id }
       end
     end
