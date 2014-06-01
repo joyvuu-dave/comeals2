@@ -18,6 +18,7 @@ ActiveAdmin.register Bill do
       bill.meal.date
     end
     column :resident
+    column :unit
     column '$', :amount_decimal do |bill|
       number_with_precision(bill.amount_decimal, precision: 2) unless bill.amount == 0
     end

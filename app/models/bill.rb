@@ -23,6 +23,7 @@ class Bill < ActiveRecord::Base
 
 
   delegate :multiplier, to: :meal
+  delegate :unit, to: :resident
 
 
   # VALIDATION
