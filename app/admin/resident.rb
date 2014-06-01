@@ -40,7 +40,7 @@ ActiveAdmin.register Resident do
     f.inputs do
       f.input :name
       f.input :multiplier, label: 'Price Category', as: :radio, collection: [['Adult', 2], ['Child', 1]]
-      f.input :unit
+      f.input :unit, collection: Unit.order('name')
     end
     f.actions
     f.semantic_errors

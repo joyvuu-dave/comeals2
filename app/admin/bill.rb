@@ -29,7 +29,7 @@ ActiveAdmin.register Bill do
   # FORM
   form do |f|
     f.inputs do
-      f.input :meal, as: :select, collection: Meal.all.map { |i| [i.date, i.id] }, label: 'Common Meal Date'
+      f.input :meal, label: 'Common Meal Date', collection: Meal.all.map { |i| [i.date, i.id] }
       f.input :resident, label: 'Cook', collection: Resident.order('name')
       f.input :amount_decimal, label: '$'
     end

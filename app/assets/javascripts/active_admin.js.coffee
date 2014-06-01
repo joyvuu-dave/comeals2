@@ -25,6 +25,12 @@ $( ->
   )
 
 
+
+  # Bring name field into focus when adding a new unit
+  if window.location.pathname == '/units/new'
+    $('#unit_name').focus()
+
+
   # Bring name field into focus when adding a new resident
   if window.location.pathname == '/residents/new'
     $('#resident_name').focus()
