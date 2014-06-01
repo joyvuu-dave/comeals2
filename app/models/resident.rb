@@ -26,6 +26,10 @@ class Resident < ActiveRecord::Base
   has_many :guests, dependent: :destroy
 
 
+  # Scope
+  scope :adult, -> { where(multiplier: 2) }
+
+
   # VALIDATIONS
   validates :unit, presence: true
 
