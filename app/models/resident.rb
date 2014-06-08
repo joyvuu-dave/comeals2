@@ -47,23 +47,34 @@ class Resident < ActiveRecord::Base
 
 
   def total_meal_costs
-    result = 0
-    meals.each do |meal|
-      meal.bills.each do |bill|
-        result += multiplier * bill.unit_cost
-      end
-    end
-    result
+    @total_meal_costs ||= calculate_total_meal_costs
   end
 
 
   def total_guest_costs
-    result = 0
-    guests.each do |guest|
-      guest.meal.bills.each do |bill|
-        result += guest.multiplier * bill.unit_cost
-      end
-    end
-    result
+    @total_guest_costs ||= calculate_total_guest_costs
   end
+
+
+  private
+    def calculate_total_meal_costs
+      result = 0
+      meals.each do |meal|
+        meal.bills.each do |bill|
+          result += multiplier * bill.unit_cost
+        end
+      end
+      result
+    end
+
+
+    def calculate_total_guest_costs
+      result = 0
+      guests.each do |guest|
+        guest.meal.bills.each do |bill|
+          result += guest.multiplier * bill.unit_cost
+        end
+      end
+      result
+    end
 end

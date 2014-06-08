@@ -29,10 +29,16 @@ class Unit < ActiveRecord::Base
 
 
   def balance
-    sum = 0
-    residents.each do |resident|
-      sum += resident.balance
-    end
-    sum
+    @balance ||= calculate_balance
   end
+
+
+  private
+    def calculate_balance
+      sum = 0
+      residents.each do |resident|
+        sum += resident.balance
+      end
+      sum
+    end
 end
