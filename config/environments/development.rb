@@ -35,7 +35,7 @@ Rails.application.configure do
   config.assets.raise_runtime_errors = true
 
   # Host
-  config.action_mailer.default_url_options = { :host => 'localhost' }
+  config.action_mailer.default_url_options = { host: 'localhost' }
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
