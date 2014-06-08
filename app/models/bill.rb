@@ -30,6 +30,7 @@ class Bill < ActiveRecord::Base
   validates :meal, presence: true
   validates :resident, presence: true
   validates :amount_decimal, numericality: { greater_than_or_equal_to: 0.01 }
+  validates :resident_id, uniqueness: { scope: :meal_id, message: 'resident already has a bill for this meal' }
 
 
   # CALLBACKS
