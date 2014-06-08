@@ -32,6 +32,7 @@ class Resident < ActiveRecord::Base
 
   # VALIDATIONS
   validates :unit, presence: true
+  validates :name, presence: true, uniqueness: true
 
 
   def balance
