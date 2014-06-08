@@ -34,4 +34,10 @@ $( ->
   # Bring name field into focus when adding a new resident
   if window.location.pathname == '/residents/new'
     $('#resident_name').focus()
+
+
+  # Clear bill amount if it's 0
+  if $('#bill_amount_decimal').val() == '0.0'
+    $('#bill_amount_decimal')
+      .val('')
 )
