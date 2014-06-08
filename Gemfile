@@ -47,6 +47,12 @@ group :development do
   gem 'sextant'
   gem 'pry-rails'
   gem 'quiet_assets'
+
+  # PROFILING
+  gem 'uniform_notifier', '>=1.5.0' # so we can use quiet option
+  gem 'bullet'
+  gem 'ruby_gntp' # for growl v1.3+
+  gem 'rack-mini-profiler', require: false
 end
 
 
