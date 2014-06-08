@@ -16,7 +16,7 @@ Rails.application.configure do
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+  config.action_mailer.smtp_settings = { address: 'localhost', port: 1025 }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -33,6 +33,9 @@ Rails.application.configure do
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
+
+  # Host
+  config.action_mailer.default_url_options = { :host => 'localhost' }
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
