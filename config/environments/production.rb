@@ -36,7 +36,7 @@ Rails.application.configure do
   config.assets.version = '1.0'
 
   # Host
-  config.action_mailer.default_url_options = { host: 'comeals.com' }
+  config.action_mailer.default_url_options = { host: 'www.comeals.com' }
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
