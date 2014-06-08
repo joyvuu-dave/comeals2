@@ -9,7 +9,7 @@ ActiveAdmin.register AdminUser do
 
 
   # ACTIONS
-  actions :all, except: [:new, :show, :destroy]
+  actions :all, except: [:new, :edit, :show, :destroy]
 
 
   # INDEX
