@@ -5,7 +5,7 @@ ActiveAdmin.register Bill do
 
   # CONFIG
   config.filters = false
-  config.paginate = false
+  config.per_page = 10
 
 
   # ACTIONS
@@ -13,13 +13,13 @@ ActiveAdmin.register Bill do
 
 
   # INDEX
-  index do
+  index pagination_total: false do
     column :meal do |bill|
       bill.meal.date
     end
     column :resident
-    column :unit
-    column '$', :amount_decimal do |bill|
+    column :unit, sortable: false
+    column '$', :amount_decimal, sortable: :amount_decimal do |bill|
       number_with_precision(bill.amount_decimal, precision: 2) unless bill.amount == 0
     end
 

@@ -5,7 +5,7 @@ ActiveAdmin.register AdminUser do
 
   # CONFIG
   config.filters = false
-  config.paginate = false
+  config.per_page = 10
 
 
   # ACTIONS
@@ -13,9 +13,7 @@ ActiveAdmin.register AdminUser do
 
 
   # INDEX
-  index do
-    selectable_column
-    id_column
+  index pagination_total: false do
     column :email
     column :current_sign_in_at
     column :sign_in_count

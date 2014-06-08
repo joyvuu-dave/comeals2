@@ -5,7 +5,7 @@ ActiveAdmin.register Meal do
 
   # CONFIG
   config.filters = false
-  config.paginate = false
+  config.per_page = 10
 
 
   # ACTIONS
@@ -13,9 +13,9 @@ ActiveAdmin.register Meal do
 
 
   # INDEX
-  index do
+  index pagination_total: false do
     column :date
-    column :number_of_diners
+    column :number_of_diners, sortable: false
     column :total_cost do |meal|
       number_with_precision((meal.total_cost.to_f / 100), precision: 2) unless meal.total_cost == 0
     end

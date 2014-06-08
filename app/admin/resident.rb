@@ -5,7 +5,7 @@ ActiveAdmin.register Resident do
 
   # CONFIG
   config.filters = false
-  config.paginate = false
+  config.per_page = 10
   config.sort_order = 'name_asc'
 
 
@@ -14,9 +14,9 @@ ActiveAdmin.register Resident do
 
 
   # INDEX
-  index do
+  index pagination_total: false do
     column :name
-    column 'Price Category', :multiplier do |resident|
+    column 'Price Category', :multiplier, sortable: :multiplier do |resident|
       if resident.multiplier == 2
         "Adult"
       elsif resident.multiplier == 1

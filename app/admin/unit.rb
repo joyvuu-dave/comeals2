@@ -5,7 +5,7 @@ ActiveAdmin.register Unit do
 
   # CONFIG
   config.filters = false
-  config.paginate = false
+  config.per_page = 10
   config.sort_order = 'name_asc'
 
 
@@ -14,12 +14,12 @@ ActiveAdmin.register Unit do
 
 
   # INDEX
-  index do
+  index pagination_total: false do
     column 'Unit', :name
     column '$', :balance do |unit|
       number_with_precision((unit.balance.to_f / 100), precision: 2) unless unit.balance == 0
     end
-    column '# of occupants', :number_of_occupants
+    column '# of occupants', :number_of_occupants, sortable: false
 
     actions
   end
