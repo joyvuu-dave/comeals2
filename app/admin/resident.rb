@@ -10,7 +10,7 @@ ActiveAdmin.register Resident do
 
 
   # ACTIONS
-  actions :all, except: [:show, :destroy]
+  actions :all, except: [:destroy]
 
 
   # INDEX
@@ -32,6 +32,16 @@ ActiveAdmin.register Resident do
     end
 
     actions
+  end
+
+
+  # SHOW
+  show do
+    attributes_table do
+      table_for resident.meals.order('date') do
+        column 'Meals Attended', :date
+      end
+    end
   end
 
 
