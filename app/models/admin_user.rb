@@ -30,5 +30,5 @@ class AdminUser < ActiveRecord::Base
 
 
   # VALIDATIONS
-  validates :email, uniqueness: true, format: { with: /\A([^@\s]+)@swansway.com\z/i }
+  validates :email, uniqueness: true, format: { with: /\A([^@\s]+)@swansway.com\z/i, message: "must be a Swan's Way email address" }
 end
