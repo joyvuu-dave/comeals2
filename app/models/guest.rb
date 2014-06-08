@@ -15,4 +15,8 @@ class Guest < ActiveRecord::Base
   # ASSOCIATIONS
   belongs_to :meal
   belongs_to :resident
+
+
+  # VALIDATIONS
+  validates :name, uniqueness: { scope: [:meal_id,  :resident_id] }
 end
