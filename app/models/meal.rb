@@ -26,7 +26,7 @@ class Meal < ActiveRecord::Base
 
 
   # VALIDATIONS
-  validates :date, presence: true
+  validates :date, presence: true, uniqueness: true
 
 
 
