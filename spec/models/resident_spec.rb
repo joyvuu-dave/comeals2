@@ -14,7 +14,7 @@
 #  index_residents_on_name  (name) UNIQUE
 #
 
-require 'spec_helper'
+require 'rails_helper'
 
 describe Resident do
   it 'can create a Resident' do

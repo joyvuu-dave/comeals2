@@ -14,7 +14,7 @@ FactoryGirl.define do
 
 
   factory :meal do
-    date { rand(-200..200).days.ago }
+    date { rand(0..90).days.ago }
   end
 
 

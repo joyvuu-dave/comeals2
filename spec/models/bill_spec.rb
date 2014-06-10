@@ -16,7 +16,7 @@
 #  index_bills_on_resident_id  (resident_id)
 #
 
-require 'spec_helper'
+require 'rails_helper'
 
 describe Bill do
   it 'can create a Bill' do

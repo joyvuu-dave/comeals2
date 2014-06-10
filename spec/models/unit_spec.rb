@@ -13,7 +13,7 @@
 #  index_units_on_name  (name) UNIQUE
 #
 
-require 'spec_helper'
+require 'rails_helper'
 
 describe Unit do
   it 'can create a Unit' do

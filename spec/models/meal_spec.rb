@@ -13,7 +13,7 @@
 #  index_meals_on_date  (date) UNIQUE
 #
 
-require 'spec_helper'
+require 'rails_helper'
 
 describe Meal do
   it 'can create a Meal' do

@@ -13,7 +13,7 @@
 #  index_meal_residents_on_meal_id_and_resident_id  (meal_id,resident_id)
 #
 
-require 'spec_helper'
+require 'rails_helper'
 
 describe MealResident do
   it 'can create a MealResident' do

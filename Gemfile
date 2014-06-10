@@ -18,7 +18,6 @@ gem 'postmark-rails'
 
 
 
-gem 'rails_best_practices'
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'devise'
 gem 'rack-timeout'
@@ -35,7 +34,7 @@ end
 
 group :development, :test do
   gem 'faker'
-  gem 'rspec-rails', '2.14.2'
+  gem 'rspec-rails', '~> 3.0.1'
 end
 
 
