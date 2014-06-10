@@ -10,6 +10,11 @@
 #  created_at  :datetime
 #  updated_at  :datetime
 #
+# Indexes
+#
+#  index_guests_on_meal_id      (meal_id)
+#  index_guests_on_resident_id  (resident_id)
+#
 
 class Guest < ActiveRecord::Base
   # ASSOCIATIONS

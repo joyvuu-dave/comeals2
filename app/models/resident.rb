@@ -11,7 +11,8 @@
 #
 # Indexes
 #
-#  index_residents_on_name  (name) UNIQUE
+#  index_residents_on_name     (name) UNIQUE
+#  index_residents_on_unit_id  (unit_id)
 #
 
 class Resident < ActiveRecord::Base
