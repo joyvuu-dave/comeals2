@@ -16,6 +16,10 @@ gem 'foreigner'
 gem 'immigrant'
 gem 'postmark-rails'
 
+# CACHE
+gem 'memcachier'
+gem 'dalli'
+
 
 
 gem 'activeadmin', github: 'gregbell/active_admin'
