@@ -30,7 +30,7 @@ class Meal < ActiveRecord::Base
 
 
 
-  # HELPERS
+  # VIRTUAL ATTRIBUTES
   def number_of_diners
     residents.size + guests.size
   end

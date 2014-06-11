@@ -36,13 +36,12 @@ class Bill < ActiveRecord::Base
   # CALLBACKS
   before_save :set_amount
 
-
-  # VIRTUAL ATTRIBUTES
   def set_amount
     self.amount = Integer(amount_decimal * 100)
   end
 
 
+  # VIRTUAL ATTRIBUTE
   def unit_cost
     multiplier > 0 ? adj_amount / multiplier : 0
   end

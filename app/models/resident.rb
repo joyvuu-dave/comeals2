@@ -36,6 +36,7 @@ class Resident < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
 
 
+  # VIRTUAL ATTRIBUTE
   def balance
     sum_of_bills - total_meal_costs - total_guest_costs
   end
