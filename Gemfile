@@ -15,6 +15,7 @@ gem 'pg'
 gem 'foreigner'
 gem 'immigrant'
 gem 'postmark-rails'
+gem 'coveralls', require: false
 
 # CACHE
 gem 'memcachier'
