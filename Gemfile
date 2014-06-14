@@ -16,6 +16,7 @@ gem 'foreigner'
 gem 'immigrant'
 gem 'postmark-rails'
 gem 'coveralls', require: false
+gem 'counter_culture', '~> 0.1.23'
 
 # CACHE
 gem 'rack-cache'
