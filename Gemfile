@@ -18,8 +18,11 @@ gem 'postmark-rails'
 gem 'coveralls', require: false
 
 # CACHE
-gem 'memcachier'
+gem 'rack-cache'
 gem 'dalli'
+gem 'kgio'
+gem 'memcachier'
+
 
 
 
