@@ -14,7 +14,7 @@ FactoryGirl.define do
 
 
   factory :meal do
-    date { rand(0..90).days.ago }
+    sequence(:date) { |n| n.days.ago }
   end
 
 

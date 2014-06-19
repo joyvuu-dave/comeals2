@@ -18,6 +18,10 @@ class Unit < ActiveRecord::Base
   has_many :residents, dependent: :destroy
 
 
+  # NO WHITESPACE
+  strip_attributes
+
+
   # VALIDATIONS
   validates :name, presence: true, uniqueness: true
 

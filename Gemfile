@@ -16,6 +16,7 @@ gem 'foreigner'
 gem 'immigrant'
 gem 'postmark-rails'
 gem 'coveralls', require: false
+gem 'strip_attributes'
 
 # CACHE
 gem 'rack-cache'

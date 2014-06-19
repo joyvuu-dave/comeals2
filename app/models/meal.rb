@@ -25,6 +25,10 @@ class Meal < ActiveRecord::Base
   accepts_nested_attributes_for :meal_residents, :guests, allow_destroy: true
 
 
+  # NO WHITESPACE
+  strip_attributes
+
+
   # VALIDATIONS
   validates :date, presence: true, uniqueness: true
 

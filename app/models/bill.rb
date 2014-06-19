@@ -26,6 +26,10 @@ class Bill < ActiveRecord::Base
   delegate :unit, to: :resident
 
 
+  # NO WHITESPACE
+  strip_attributes
+
+
   # VALIDATION
   validates :meal, presence: true
   validates :resident, presence: true

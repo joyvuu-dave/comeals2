@@ -17,4 +17,8 @@ class MealResident < ActiveRecord::Base
   # ASSOCIATIONS
   belongs_to :meal
   belongs_to :resident
+
+
+  # NO WHITESPACE
+  strip_attributes
 end

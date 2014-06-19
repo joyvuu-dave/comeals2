@@ -22,6 +22,10 @@ class Guest < ActiveRecord::Base
   belongs_to :resident
 
 
+  # NO WHITESPACE
+  strip_attributes
+
+
   # VALIDATIONS
   validates :name, uniqueness: { scope: [:meal_id,  :resident_id] }
 end

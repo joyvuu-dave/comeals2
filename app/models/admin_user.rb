@@ -38,6 +38,10 @@ class AdminUser < ActiveRecord::Base
          :confirmable
 
 
+  # NO WHITESPACE
+  strip_attributes
+
+
   # VALIDATIONS
   validates :email, uniqueness: true, format: { with: /\A([^@\s]+)@swansway.com\z/i, message: "must be a Swan's Way email address" }
 end

@@ -31,6 +31,10 @@ class Resident < ActiveRecord::Base
   scope :adult, -> { where(multiplier: 2) }
 
 
+  # NO WHITESPACE
+  strip_attributes
+
+
   # VALIDATIONS
   validates :unit, presence: true
   validates :name, presence: true, uniqueness: true
