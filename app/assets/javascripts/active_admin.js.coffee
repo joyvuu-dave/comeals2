@@ -11,11 +11,12 @@ $( ->
   )
 
 
+  # FIXME: This code is adding one day
   # Add day of week to dates on Bill index page
-  $('td.col-meal').each( (index) ->
-    if $(this).text()
-      $(this).text(moment(new Date($(this).text())).format('ddd, MMM D YYYY'))
-  )
+  # $('td.col-meal').each( (index) ->
+  #   if $(this).text()
+  #     $(this).text(moment(new Date($(this).text())).format('ddd, MMM D YYYY'))
+  # )
 
 
   # Add day of week to options on Bill edit page
