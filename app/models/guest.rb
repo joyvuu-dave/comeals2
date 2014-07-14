@@ -15,16 +15,13 @@
 #  index_guests_on_meal_id      (meal_id)
 #  index_guests_on_resident_id  (resident_id)
 #
-
 class Guest < ActiveRecord::Base
   # ASSOCIATIONS
   belongs_to :meal
   belongs_to :resident
 
-
   # NO WHITESPACE
   strip_attributes
-
 
   # VALIDATIONS
   validates :name, uniqueness: { scope: [:meal_id,  :resident_id] }

@@ -14,7 +14,6 @@
 #  index_residents_on_name     (name) UNIQUE
 #  index_residents_on_unit_id  (unit_id)
 #
-
 class Resident < ActiveRecord::Base
   # ASSOCIATIONS
   belongs_to :unit, counter_cache: true
@@ -26,61 +25,53 @@ class Resident < ActiveRecord::Base
 
   has_many :guests, dependent: :destroy
 
-
   # Scope
   scope :adult, -> { where(multiplier: 2) }
-
 
   # NO WHITESPACE
   strip_attributes
 
-
   # VALIDATIONS
   validates :unit, presence: true
   validates :name, presence: true, uniqueness: true
-
 
   # VIRTUAL ATTRIBUTE
   def balance
     sum_of_bills - total_meal_costs - total_guest_costs
   end
 
-
   # HELPERS
   def sum_of_bills
     bills.sum('amount')
   end
 
-
   def total_meal_costs
     @total_meal_costs ||= calculate_total_meal_costs
   end
-
 
   def total_guest_costs
     @total_guest_costs ||= calculate_total_guest_costs
   end
 
-
   private
-    def calculate_total_meal_costs
-      result = 0
-      meals.each do |meal|
-        meal.bills.each do |bill|
-          result += multiplier * bill.unit_cost
-        end
-      end
-      result
-    end
 
-
-    def calculate_total_guest_costs
-      result = 0
-      guests.each do |guest|
-        guest.meal.bills.each do |bill|
-          result += guest.multiplier * bill.unit_cost
-        end
+  def calculate_total_meal_costs
+    result = 0
+    meals.each do |meal|
+      meal.bills.each do |bill|
+        result += multiplier * bill.unit_cost
       end
-      result
     end
+    result
+  end
+
+  def calculate_total_guest_costs
+    result = 0
+    guests.each do |guest|
+      guest.meal.bills.each do |bill|
+        result += guest.multiplier * bill.unit_cost
+      end
+    end
+    result
+  end
 end

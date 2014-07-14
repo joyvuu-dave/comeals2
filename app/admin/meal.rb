@@ -2,15 +2,12 @@ ActiveAdmin.register Meal do
   # STRONG PARAMS
   permit_params :date, guests_attributes: [:id, :name, :multiplier, :resident_id, :meal_id, :_destroy], resident_ids: []
 
-
   # CONFIG
   config.filters = false
   config.per_page = 10
 
-
   # ACTIONS
   actions :all, except: [:show]
-
 
   # INDEX
   index pagination_total: false do
@@ -25,7 +22,6 @@ ActiveAdmin.register Meal do
 
     actions
   end
-
 
   # FORM
   form do |f|

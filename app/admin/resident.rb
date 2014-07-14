@@ -2,25 +2,22 @@ ActiveAdmin.register Resident do
   # STRONG PARAMS
   permit_params :name, :multiplier, :unit_id
 
-
   # CONFIG
   config.filters = false
   config.per_page = 10
   config.sort_order = 'name_asc'
 
-
   # ACTIONS
   actions :all, except: [:destroy]
-
 
   # INDEX
   index pagination_total: false do
     column :name
     column 'Price Category', :multiplier, sortable: :multiplier do |resident|
       if resident.multiplier == 2
-        "Adult"
+        'Adult'
       elsif resident.multiplier == 1
-        "Child"
+        'Child'
       else
         # Note: this would only be used if we allowed custom multiplier input
         "Adult x #{number_with_precision((resident.multiplier.to_f / 2), precision: 1, strip_insignificant_zeros: true)}"
@@ -34,7 +31,6 @@ ActiveAdmin.register Resident do
     actions
   end
 
-
   # SHOW
   show do
     attributes_table do
@@ -43,7 +39,6 @@ ActiveAdmin.register Resident do
       end
     end
   end
-
 
   # FORM
   form do |f|

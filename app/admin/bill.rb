@@ -2,15 +2,12 @@ ActiveAdmin.register Bill do
   # STRONG PARAMS
   permit_params :meal_id, :resident_id, :amount_decimal
 
-
   # CONFIG
   config.filters = false
   config.per_page = 10
 
-
   # ACTIONS
   actions :all, except: [:show]
-
 
   # INDEX
   index pagination_total: false do
@@ -25,7 +22,6 @@ ActiveAdmin.register Bill do
 
     actions
   end
-
 
   # FORM
   form do |f|

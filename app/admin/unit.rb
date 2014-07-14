@@ -2,16 +2,13 @@ ActiveAdmin.register Unit do
   # STRONG PARAMS
   permit_params :name
 
-
   # CONFIG
   config.filters = false
   config.per_page = 10
   config.sort_order = 'name_asc'
 
-
   # ACTIONS
   actions :all, except: [:show, :destroy]
-
 
   # INDEX
   index pagination_total: false do
@@ -23,7 +20,6 @@ ActiveAdmin.register Unit do
 
     actions
   end
-
 
   # FORM
   form do |f|

@@ -2,7 +2,6 @@
 #= require moment
 
 
-
 $( ->
   # Add day of week to dates on Meal index page
   $('td.col-date').each( (index) ->
@@ -11,21 +10,18 @@ $( ->
   )
 
 
-  # FIXME: This code is adding one day
   # Add day of week to dates on Bill index page
-  # $('td.col-meal').each( (index) ->
-  #   if $(this).text()
-  #     $(this).text(moment(new Date($(this).text())).format('ddd, MMM D YYYY'))
-  # )
+  $('td.col-meal').each( (index) ->
+    if $(this).text()
+      $(this).text(moment(new Date($(this).text())).add('days', 1).format('ddd, MMM D YYYY'))
+  )
 
 
-  # FIXME: This code is adding one day
   # Add day of week to options on Bill edit page
-  # $('#bill_meal_id option').each( (index) ->
-  #   if $(this).text()
-  #     $(this).text(moment(new Date($(this).text())).format('ddd, MMM D YYYY'))
-  # )
-
+  $('#bill_meal_id option').each( (index) ->
+    if $(this).text()
+      $(this).text(moment(new Date($(this).text())).add('days', 1).format('ddd, MMM D YYYY'))
+  )
 
 
   # Bring name field into focus when adding a new unit

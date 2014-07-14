@@ -25,7 +25,6 @@
 #  index_admin_users_on_email                 (email) UNIQUE
 #  index_admin_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
-
 class AdminUser < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and :omniauthable
@@ -37,10 +36,8 @@ class AdminUser < ActiveRecord::Base
          :registerable,
          :confirmable
 
-
   # NO WHITESPACE
   strip_attributes
-
 
   # VALIDATIONS
   validates :email, uniqueness: true, format: { with: /\A([^@\s]+)@swansway.com\z/i, message: "must be a Swan's Way email address" }

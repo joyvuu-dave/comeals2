@@ -12,37 +12,32 @@
 #
 #  index_units_on_name  (name) UNIQUE
 #
-
 class Unit < ActiveRecord::Base
   # ASSOCIATION
   has_many :residents, dependent: :destroy
 
-
   # NO WHITESPACE
   strip_attributes
 
-
   # VALIDATIONS
   validates :name, presence: true, uniqueness: true
-
 
   # HELPERS
   def number_of_occupants
     residents.size
   end
 
-
   def balance
     @balance ||= calculate_balance
   end
 
-
   private
-    def calculate_balance
-      sum = 0
-      residents.each do |resident|
-        sum += resident.balance
-      end
-      sum
+
+  def calculate_balance
+    sum = 0
+    residents.each do |resident|
+      sum += resident.balance
     end
+    sum
+  end
 end
