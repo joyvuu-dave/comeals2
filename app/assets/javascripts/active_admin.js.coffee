@@ -19,11 +19,12 @@ $( ->
   # )
 
 
+  # FIXME: This code is adding one day
   # Add day of week to options on Bill edit page
-  $('#bill_meal_id option').each( (index) ->
-    if $(this).text()
-      $(this).text(moment(new Date($(this).text())).format('ddd, MMM D YYYY'))
-  )
+  # $('#bill_meal_id option').each( (index) ->
+  #   if $(this).text()
+  #     $(this).text(moment(new Date($(this).text())).format('ddd, MMM D YYYY'))
+  # )
 
 
 
