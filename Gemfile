@@ -2,8 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.1.2'
 
-
-gem 'rails', '4.1.1'
+gem 'rails', '4.1.4'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
@@ -17,21 +16,16 @@ gem 'immigrant'
 gem 'postmark-rails'
 gem 'coveralls', require: false
 gem 'strip_attributes'
+gem 'goldiloader' # automatic lazy eager loading
 
 # CACHE
 gem 'rack-cache'
 gem 'dalli'
 gem 'kgio'
 gem 'memcachier'
-
-
-
-
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'devise'
 gem 'rack-timeout'
-
-
 
 group :production do
   gem 'rails_12factor'
@@ -39,15 +33,10 @@ group :production do
   gem 'newrelic_rpm'
 end
 
-
-
 group :development, :test do
   gem 'faker'
   gem 'rspec-rails', '~> 3.0.1'
 end
-
-
-
 
 group :development do
   gem 'spring'
@@ -62,9 +51,6 @@ group :development do
   gem 'ruby_gntp' # for growl v1.3+
   gem 'rack-mini-profiler', require: false
 end
-
-
-
 
 group :test do
   gem 'rake', '10.3.2'
