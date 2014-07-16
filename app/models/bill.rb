@@ -21,6 +21,7 @@ class Bill < ActiveRecord::Base
   belongs_to :resident
 
   delegate :multiplier, to: :meal
+  delegate :date, to: :meal
   delegate :unit, to: :resident
 
   # NO WHITESPACE

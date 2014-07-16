@@ -11,9 +11,7 @@ ActiveAdmin.register Bill do
 
   # INDEX
   index pagination_total: false do
-    column :meal do |bill|
-      bill.meal.date
-    end
+    column :date
     column :resident
     column :unit, sortable: false
     column '$', :amount_decimal, sortable: :amount_decimal do |bill|
