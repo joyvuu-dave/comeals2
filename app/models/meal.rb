@@ -20,7 +20,7 @@ class Meal < ActiveRecord::Base
   has_many :guests, dependent: :destroy
   has_many :bills, dependent: :destroy
 
-  accepts_nested_attributes_for :meal_residents, :guests, allow_destroy: true, reject_if: proc { |attributes| attributes['name'].blank? }
+  accepts_nested_attributes_for :meal_residents, :guests, allow_destroy: true, reject_if: proc { |attributes| attributes['name'].blank? || attributes['host_id'].blank? }
 
   # NO WHITESPACE
   strip_attributes
