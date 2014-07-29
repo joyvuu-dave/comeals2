@@ -46,6 +46,9 @@ class Bill < ActiveRecord::Base
   end
 
   # HELPERS
+
+  private
+
   def adj_amount
     amount + diff
   end

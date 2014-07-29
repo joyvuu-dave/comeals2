@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/gregbell/active_admin.git
-  revision: 27360996837146ebbbf3b3597049b1586542fbeb
+  revision: a8ae008ec9632110bf33443ce7090dfef9cca480
   specs:
     activeadmin (1.0.0.pre)
       arbre (~> 1.0)
@@ -14,6 +14,14 @@ GIT
       rails (>= 3.2, < 4.2)
       ransack (~> 1.0)
       sass-rails
+
+GIT
+  remote: git://github.com/rails-api/active_model_serializers.git
+  revision: 1db474963b5260a3b711fbe1d50afde2815600df
+  branch: 0-8-stable
+  specs:
+    active_model_serializers (0.8.1)
+      activemodel (>= 3.0)
 
 GEM
   remote: https://rubygems.org/
@@ -194,14 +202,14 @@ GEM
     rest-client (1.7.2)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
-    rspec-core (3.0.2)
+    rspec-core (3.0.3)
       rspec-support (~> 3.0.0)
-    rspec-expectations (3.0.2)
+    rspec-expectations (3.0.3)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.0.0)
-    rspec-mocks (3.0.2)
+    rspec-mocks (3.0.3)
       rspec-support (~> 3.0.0)
-    rspec-rails (3.0.1)
+    rspec-rails (3.0.2)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       railties (>= 3.0)
@@ -209,7 +217,7 @@ GEM
       rspec-expectations (~> 3.0.0)
       rspec-mocks (~> 3.0.0)
       rspec-support (~> 3.0.0)
-    rspec-support (3.0.2)
+    rspec-support (3.0.3)
     ruby_gntp (0.3.4)
     sass (3.2.19)
     sass-rails (4.0.3)
@@ -268,6 +276,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers!
   activeadmin!
   annotate
   bullet

@@ -40,7 +40,10 @@ class Resident < ActiveRecord::Base
     sum_of_bills - total_meal_costs - total_guest_costs
   end
 
+  private
+
   # HELPERS
+  # TODO: add counter_culture
   def sum_of_bills
     bills.sum('amount')
   end
@@ -52,8 +55,6 @@ class Resident < ActiveRecord::Base
   def total_guest_costs
     @total_guest_costs ||= calculate_total_guest_costs
   end
-
-  private
 
   def calculate_total_meal_costs
     result = 0

@@ -37,6 +37,7 @@ class Meal < ActiveRecord::Base
     residents.sum('multiplier') + guests.sum('multiplier')
   end
 
+  # TODO: add counter_culture
   def total_cost
     bills.sum('amount')
   end
