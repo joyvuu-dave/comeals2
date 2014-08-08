@@ -39,7 +39,7 @@ ActiveAdmin.register Resident do
           link_to meal.date, meal
         end
         column 'Cost Per Adult' do |meal|
-          number_with_precision((meal.total_cost.to_f / 100), precision: 2) unless meal.total_cost == 0
+          number_with_precision((meal.cost_per_adult.to_f / 100), precision: 2) unless meal.cost_per_adult == 0
         end
       end
     end
