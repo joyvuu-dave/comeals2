@@ -6,19 +6,34 @@ ActiveAdmin.register Bill do
   config.filters = false
   config.per_page = 10
 
-  # ACTIONS
-  actions :all, except: [:show]
+  controller do
+    def scoped_collection
+      end_of_association_chain.includes(:meal, :resident, resident: :unit)
+    end
+  end
 
   # INDEX
   index pagination_total: false do
-    column :date
-    column :resident
-    column :unit, sortable: false
+    column Meal.model_name.human, :date, sortable: 'meals.date'
+    column :resident, sortable: 'residents.name'
+    column :unit, sortable: 'units.name'
     column '$', :amount_decimal, sortable: :amount_decimal do |bill|
       number_with_precision(bill.amount_decimal, precision: 2) unless bill.amount == 0
     end
 
     actions
+  end
+
+  # SHOW
+  show do
+    attributes_table do
+      row :date
+      row :resident
+      row :unit
+      row '$', :amount_decimal do |bill|
+        number_with_precision(bill.amount_decimal, precision: 2) unless bill.amount == 0
+      end
+    end
   end
 
   # FORM

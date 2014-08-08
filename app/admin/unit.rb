@@ -8,7 +8,7 @@ ActiveAdmin.register Unit do
   config.sort_order = 'name_asc'
 
   # ACTIONS
-  actions :all, except: [:show, :destroy]
+  actions :all, except: [:destroy]
 
   # INDEX
   index pagination_total: false do
@@ -19,6 +19,21 @@ ActiveAdmin.register Unit do
     column '# of occupants', :number_of_occupants, sortable: false
 
     actions
+  end
+
+  # SHOW
+  show do
+    attributes_table do
+      row :name
+      row :balance do |unit|
+        number_with_precision((unit.balance.to_f / 100), precision: 2) unless unit.balance == 0
+      end
+      table_for unit.residents.order('name ASC') do
+        column 'Name' do |resident|
+          link_to resident.name, resident
+        end
+      end
+    end
   end
 
   # FORM

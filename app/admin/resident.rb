@@ -35,7 +35,12 @@ ActiveAdmin.register Resident do
   show do
     attributes_table do
       table_for resident.meals.order('date') do
-        column 'Meals Attended', :date
+        column 'Meals Attended' do |meal|
+          link_to meal.date, meal
+        end
+        column 'Cost Per Adult' do |meal|
+          number_with_precision((meal.total_cost.to_f / 100), precision: 2) unless meal.total_cost == 0
+        end
       end
     end
   end

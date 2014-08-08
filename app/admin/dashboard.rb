@@ -10,7 +10,7 @@ ActiveAdmin.register_page 'Dashboard' do
         panel 'Units' do
           ul do
             Unit.order('name').map do |unit|
-              li link_to(unit.name)
+              li link_to(unit.name, unit_path(unit))
             end
           end
         end
@@ -20,7 +20,7 @@ ActiveAdmin.register_page 'Dashboard' do
         panel 'Residents' do
           ul do
             Resident.order('name').map do |resident|
-              li link_to(resident.name)
+              li link_to(resident.name, resident_path(resident))
             end
           end
         end
@@ -30,7 +30,7 @@ ActiveAdmin.register_page 'Dashboard' do
         panel 'Meals' do
           ul do
             Meal.order('date').map do |meal|
-              li link_to(meal.date)
+              li link_to(meal.date, meal_path(meal))
             end
           end
         end

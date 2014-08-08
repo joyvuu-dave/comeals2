@@ -6,9 +6,6 @@ ActiveAdmin.register Meal do
   config.filters = false
   config.per_page = 10
 
-  # ACTIONS
-  actions :all, except: [:show]
-
   # INDEX
   index pagination_total: false do
     column :date
@@ -21,6 +18,34 @@ ActiveAdmin.register Meal do
     end
 
     actions
+  end
+
+  # SHOW
+  show do
+    attributes_table do
+      row :date
+      row :total_cost do |meal|
+        number_with_precision((meal.total_cost.to_f / 100), precision: 2) unless meal.total_cost == 0
+      end
+      row :cost_per_adult do |meal|
+        number_with_precision((meal.cost_per_adult.to_f / 100), precision: 2) unless meal.cost_per_adult == 0
+      end
+      table_for meal.residents.order('name ASC') do
+        column 'Residents Attendance' do |resident|
+          link_to resident.name, resident
+        end
+      end
+      table_for meal.guests.order('name ASC') do
+        column 'Guests in Attendance' do |guest|
+          li "#{guest.name} (host: #{guest.resident.name})"
+        end
+      end
+      table_for meal.bills.all do
+        column 'Bills' do |bill|
+          link_to bill.resident.name, bill
+        end
+      end
+    end
   end
 
   # FORM
