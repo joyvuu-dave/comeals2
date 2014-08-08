@@ -8,10 +8,3 @@ before_script:
 addons:
   code_climate:
     repo_token: 802526f4a8297a7ded5bfaa85c0fab8d5726a6e6401376bdca55e53c84674202
-deploy:
-  provider: heroku
-  api_key:
-    secure: AmJA5oU99YYwztoyt3w2ic/c1f+Fmq5vbHTHCp0vxdZkR8a2b9r2zCcKb9xtAyXS/G6U+BLNELbL3rKDQOOjxYN00GAstFlf7cGbwXqfUdbzfZ7YytzBh4xLQTSdlcqaGL1Fo7UHqbeHkxbpAxhZIuxsU2xQidg0zIrqSunGG94=
-  app: comeals
-  on:
-    repo: joyvuu-dave/comeals2
