@@ -42,6 +42,14 @@ ActiveAdmin.register Resident do
           number_with_precision((meal.cost_per_adult.to_f / 100), precision: 2) unless meal.cost_per_adult == 0
         end
       end
+      table_for resident.bills.all do
+        column 'Bills' do |bill|
+          link_to bill.meal.date, bill
+        end
+        column '$' do |bill|
+          number_with_precision((bill.amount.to_f / 100), precision: 2) unless bill.amount == 0
+        end
+      end
     end
   end
 
