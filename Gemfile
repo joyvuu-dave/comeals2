@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.1.2'
 
-gem 'rails', '4.1.1' # FIXME: 4.1.2+ breaks app
+gem 'rails', '4.1.5' # FIXME: 4.1.2+ breaks app
 gem 'sass-rails', github: 'rails/sass-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
@@ -11,8 +11,6 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'pg'
-gem 'foreigner'
-gem 'immigrant'
 gem 'postmark-rails'
 gem 'coveralls', require: false
 gem 'strip_attributes'
@@ -54,7 +52,7 @@ group :development do
 end
 
 group :test do
-  gem 'rake', '10.3.2'
+  gem 'rake'
   gem 'database_cleaner'
   gem 'factory_girl_rails'
 end
