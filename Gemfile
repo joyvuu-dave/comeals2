@@ -18,6 +18,7 @@ gem 'coveralls', require: false
 gem 'strip_attributes'
 gem 'goldiloader' # automatic lazy eager loading
 gem 'active_model_serializers', github: 'rails-api/active_model_serializers', branch: '0-8-stable'
+gem 'rack-zippy'
 
 # CACHE
 gem 'rack-cache'
