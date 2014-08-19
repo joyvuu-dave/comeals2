@@ -4,7 +4,7 @@ class ActiveAdmin::Views::Pages::Base < Arbre::HTML::Document
   # Renders the content for the footer
   def build_footer
     div id: 'footer' do
-      para "#{link_to('Source', 'https://github.com/joyvuu-dave/comeals2')}".html_safe
+      para "#{link_to('Fork me on Github', 'https://github.com/joyvuu-dave/comeals2')}".html_safe
     end
   end
 end
