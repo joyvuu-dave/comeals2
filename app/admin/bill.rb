@@ -19,8 +19,8 @@ ActiveAdmin.register Bill do
     column :reconciled
     column :resident, sortable: 'residents.name'
     column :unit, sortable: 'units.name'
-    column '$', :amount_decimal, sortable: :amount_decimal do |bill|
-      number_with_precision(bill.amount_decimal, precision: 2) unless bill.amount == 0
+    column 'Amount', :amount_decimal, sortable: :amount_decimal do |bill|
+      number_to_currency(bill.amount_decimal) unless bill.amount == 0
     end
 
     actions
@@ -33,7 +33,7 @@ ActiveAdmin.register Bill do
       row :resident
       row :unit
       row '$', :amount_decimal do |bill|
-        number_with_precision(bill.amount_decimal, precision: 2) unless bill.amount == 0
+        number_to_currency(bill.amount_decimal) unless bill.amount == 0
       end
     end
   end

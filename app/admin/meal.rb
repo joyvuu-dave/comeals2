@@ -12,10 +12,10 @@ ActiveAdmin.register Meal do
     column :date
     column :number_of_diners, sortable: false
     column :total_cost do |meal|
-      number_with_precision((meal.total_cost.to_f / 100), precision: 2) unless meal.total_cost == 0
+      number_to_currency(meal.total_cost.to_f / 100) unless meal.total_cost == 0
     end
     column :cost_per_adult do |meal|
-      number_with_precision((meal.cost_per_adult.to_f / 100), precision: 2) unless meal.cost_per_adult == 0
+      number_to_currency(meal.cost_per_adult.to_f / 100) unless meal.cost_per_adult == 0
     end
     column :number_of_bills, sortable: false
 
@@ -27,10 +27,10 @@ ActiveAdmin.register Meal do
     attributes_table do
       row :date
       row :total_cost do |meal|
-        number_with_precision((meal.total_cost.to_f / 100), precision: 2) unless meal.total_cost == 0
+        number_to_currency(meal.total_cost.to_f / 100) unless meal.total_cost == 0
       end
       row :cost_per_adult do |meal|
-        number_with_precision((meal.cost_per_adult.to_f / 100), precision: 2) unless meal.cost_per_adult == 0
+        number_to_currency(meal.cost_per_adult.to_f / 100) unless meal.cost_per_adult == 0
       end
       table_for meal.residents.order('name ASC') do
         column 'Residents Attendance' do |resident|

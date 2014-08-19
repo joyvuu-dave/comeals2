@@ -13,8 +13,8 @@ ActiveAdmin.register Unit do
   # INDEX
   index do
     column 'Unit', :name
-    column '$', :balance do |unit|
-      number_with_precision((unit.balance.to_f / 100), precision: 2) unless unit.balance == 0
+    column :balance do |unit|
+      number_to_currency(unit.balance.to_f / 100) unless unit.balance == 0
     end
     column '# of occupants', :number_of_occupants, sortable: false
 
@@ -26,7 +26,7 @@ ActiveAdmin.register Unit do
     attributes_table do
       row :name
       row :balance do |unit|
-        number_with_precision((unit.balance.to_f / 100), precision: 2) unless unit.balance == 0
+        number_to_currency(unit.balance.to_f / 100) unless unit.balance == 0
       end
       table_for unit.residents.order('name ASC') do
         column 'Name' do |resident|

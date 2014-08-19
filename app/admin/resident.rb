@@ -24,8 +24,8 @@ ActiveAdmin.register Resident do
       end
     end
     column :unit
-    column '$', :balance do |resident|
-      number_with_precision((resident.balance.to_f / 100), precision: 2) unless resident.balance == 0
+    column :balance do |resident|
+      number_to_currency(resident.balance.to_f / 100) unless resident.balance == 0
     end
 
     actions
@@ -39,15 +39,15 @@ ActiveAdmin.register Resident do
           link_to meal.date, meal
         end
         column 'Cost Per Adult' do |meal|
-          number_with_precision((meal.cost_per_adult.to_f / 100), precision: 2) unless meal.cost_per_adult == 0
+          number_to_currency(meal.cost_per_adult.to_f / 100) unless meal.cost_per_adult == 0
         end
       end
       table_for resident.bills.all do
         column 'Bills' do |bill|
           link_to bill.meal.date, bill
         end
-        column '$' do |bill|
-          number_with_precision((bill.amount.to_f / 100), precision: 2) unless bill.amount == 0
+        column 'Amount' do |bill|
+          number_to_currency(bill.amount.to_f / 100) unless bill.amount == 0
         end
       end
     end
