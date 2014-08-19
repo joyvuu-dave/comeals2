@@ -3,7 +3,7 @@ class MealSerializer < ActiveModel::Serializer
              :date,
 
              # virtual attributes
-             :number_of_diners,
+             :number_of_attendees,
              :total_cost,
              :cost_per_adult
 end

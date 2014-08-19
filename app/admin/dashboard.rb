@@ -27,11 +27,20 @@ ActiveAdmin.register_page 'Dashboard' do
       end
 
       column do
-        panel "Meals - #{Meal.count(true)} (Ave. cost / adult $#{Meal.average_cost_per_adult})" do
+        panel "Meals - #{Meal.count(true)}" do
           ul do
             Meal.order('date').map do |meal|
               li link_to(meal.date, meal_path(meal))
             end
+          end
+        end
+      end
+
+      column do
+        panel 'Averages' do
+          ul do
+            li "Cost per adult: $#{Meal.average_cost_per_adult}"
+            li "Attendees per meal: #{Meal.average_number_of_attendees}"
           end
         end
       end

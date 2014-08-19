@@ -29,7 +29,7 @@ class Meal < ActiveRecord::Base
   validates :date, presence: true, uniqueness: true
 
   # VIRTUAL ATTRIBUTES
-  def number_of_diners
+  def number_of_attendees
     residents.size + guests.size
   end
 
@@ -61,5 +61,14 @@ class Meal < ActiveRecord::Base
     end
 
     format('%0.02f', (cost_per_adult_sum.to_f / Meal.count(true)).round / 100.to_f) if Meal.count(true) > 0
+  end
+
+  def self.average_number_of_attendees
+    number_of_attendees_sum = 0
+    Meal.all.each do |i|
+      number_of_attendees_sum += i.number_of_attendees
+    end
+
+    format('%0.01f', number_of_attendees_sum.to_f / Meal.count(true)) if Meal.count(true) > 0
   end
 end

@@ -10,7 +10,7 @@ ActiveAdmin.register Meal do
   # INDEX
   index do
     column :date
-    column :number_of_diners, sortable: false
+    column :number_of_attendees, sortable: false
     column :total_cost do |meal|
       number_to_currency(meal.total_cost.to_f / 100) unless meal.total_cost == 0
     end
