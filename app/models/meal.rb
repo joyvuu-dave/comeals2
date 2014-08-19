@@ -56,6 +56,6 @@ class Meal < ActiveRecord::Base
       cost_per_adult_sum += i.cost_per_adult
     end
 
-    format('%0.02f', (cost_per_adult_sum.to_f / Meal.count(true)).round / 100.to_f)
+    format('%0.02f', (cost_per_adult_sum.to_f / Meal.count(true)).round / 100.to_f) if Meal.count(true) > 0
   end
 end
