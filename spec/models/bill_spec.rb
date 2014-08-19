@@ -9,6 +9,7 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  amount_decimal :decimal(12, 2)   default(0.0), not null
+#  reconciled     :boolean          default(FALSE), not null
 #
 # Indexes
 #

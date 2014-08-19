@@ -3,7 +3,7 @@ ActiveAdmin.register Bill do
   permit_params :meal_id, :resident_id, :amount_decimal
 
   # CONFIG
-  config.filters = false
+  filter :reconciled, as: :select, collection: [false, true], include_blank: false, default: false
   config.per_page = 10
 
   controller do
@@ -15,6 +15,7 @@ ActiveAdmin.register Bill do
   # INDEX
   index pagination_total: false do
     column Meal.model_name.human, :date, sortable: 'meals.date'
+    column :reconciled
     column :resident, sortable: 'residents.name'
     column :unit, sortable: 'units.name'
     column '$', :amount_decimal, sortable: :amount_decimal do |bill|

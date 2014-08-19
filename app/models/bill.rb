@@ -9,13 +9,17 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  amount_decimal :decimal(12, 2)   default(0.0), not null
+#  reconciled     :boolean          default(FALSE), not null
 #
 # Indexes
 #
 #  index_bills_on_meal_id      (meal_id)
 #  index_bills_on_resident_id  (resident_id)
 #
+
 class Bill < ActiveRecord::Base
+  scope :unreconciled, -> { where(reconciled: false) }
+
   # ASSOCIATIONS
   belongs_to :meal, counter_cache: true
   belongs_to :resident

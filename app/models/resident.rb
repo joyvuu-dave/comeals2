@@ -45,7 +45,7 @@ class Resident < ActiveRecord::Base
   # HELPERS
   # TODO: add counter_culture
   def sum_of_bills
-    bills.sum('amount')
+    bills.unreconciled.sum('amount')
   end
 
   def total_meal_costs
@@ -59,7 +59,7 @@ class Resident < ActiveRecord::Base
   def calculate_total_meal_costs
     result = 0
     meals.each do |meal|
-      meal.bills.each do |bill|
+      meal.bills.unreconciled.each do |bill|
         result += multiplier * bill.unit_cost
       end
     end
@@ -69,7 +69,7 @@ class Resident < ActiveRecord::Base
   def calculate_total_guest_costs
     result = 0
     guests.each do |guest|
-      guest.meal.bills.each do |bill|
+      guest.meal.bills.unreconciled.each do |bill|
         result += guest.multiplier * bill.unit_cost
       end
     end

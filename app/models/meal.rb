@@ -49,4 +49,13 @@ class Meal < ActiveRecord::Base
     end
     result * 2
   end
+
+  def self.average_cost_per_adult
+    cost_per_adult_sum = 0
+    Meal.all.each do |i|
+      cost_per_adult_sum += i.cost_per_adult
+    end
+
+    format('%0.02f', (cost_per_adult_sum.to_f / Meal.count(true)).round / 100.to_f)
+  end
 end
