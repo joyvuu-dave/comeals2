@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140819061342) do
+ActiveRecord::Schema.define(version: 20140819092520) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,19 @@ ActiveRecord::Schema.define(version: 20140819061342) do
   add_index "bills", ["meal_id"], name: "index_bills_on_meal_id", using: :btree
   add_index "bills", ["resident_id"], name: "index_bills_on_resident_id", using: :btree
 
+  create_table "friendly_id_slugs", force: true do |t|
+    t.string   "slug",                      null: false
+    t.integer  "sluggable_id",              null: false
+    t.string   "sluggable_type", limit: 50
+    t.string   "scope"
+    t.datetime "created_at"
+  end
+
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+
   create_table "guests", force: true do |t|
     t.string   "name",                    null: false
     t.integer  "multiplier",  default: 2, null: false
@@ -87,9 +100,11 @@ ActiveRecord::Schema.define(version: 20140819061342) do
     t.integer  "unit_id",                null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.string   "slug"
   end
 
   add_index "residents", ["name"], name: "index_residents_on_name", unique: true, using: :btree
+  add_index "residents", ["slug"], name: "index_residents_on_slug", unique: true, using: :btree
   add_index "residents", ["unit_id"], name: "index_residents_on_unit_id", using: :btree
 
   create_table "units", force: true do |t|
@@ -97,8 +112,10 @@ ActiveRecord::Schema.define(version: 20140819061342) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.integer  "residents_count", default: 0, null: false
+    t.string   "slug"
   end
 
   add_index "units", ["name"], name: "index_units_on_name", unique: true, using: :btree
+  add_index "units", ["slug"], name: "index_units_on_slug", unique: true, using: :btree
 
 end

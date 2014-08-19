@@ -8,13 +8,23 @@
 #  unit_id    :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  slug       :string(255)
 #
 # Indexes
 #
 #  index_residents_on_name     (name) UNIQUE
+#  index_residents_on_slug     (slug) UNIQUE
 #  index_residents_on_unit_id  (unit_id)
 #
+
 class Resident < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :name, use: [:slugged, :finders]
+
+  def should_generate_new_friendly_id?
+    slug.blank? || name_changed?
+  end
+
   # ASSOCIATIONS
   belongs_to :unit, counter_cache: true
 

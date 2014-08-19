@@ -8,10 +8,12 @@
 #  unit_id    :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  slug       :string(255)
 #
 # Indexes
 #
 #  index_residents_on_name     (name) UNIQUE
+#  index_residents_on_slug     (slug) UNIQUE
 #  index_residents_on_unit_id  (unit_id)
 #
 
