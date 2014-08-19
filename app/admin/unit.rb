@@ -11,7 +11,7 @@ ActiveAdmin.register Unit do
   actions :all, except: [:destroy]
 
   # INDEX
-  index pagination_total: false do
+  index do
     column 'Unit', :name
     column '$', :balance do |unit|
       number_with_precision((unit.balance.to_f / 100), precision: 2) unless unit.balance == 0

@@ -11,7 +11,7 @@ ActiveAdmin.register Resident do
   actions :all, except: [:destroy]
 
   # INDEX
-  index pagination_total: false do
+  index do
     column :name
     column 'Price Category', :multiplier, sortable: :multiplier do |resident|
       if resident.multiplier == 2

@@ -5,9 +5,10 @@ ActiveAdmin.register Meal do
   # CONFIG
   config.filters = false
   config.per_page = 10
+  config.sort_order = 'date_desc'
 
   # INDEX
-  index pagination_total: false do
+  index do
     column :date
     column :number_of_diners, sortable: false
     column :total_cost do |meal|

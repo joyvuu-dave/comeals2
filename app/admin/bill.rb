@@ -5,6 +5,7 @@ ActiveAdmin.register Bill do
   # CONFIG
   filter :reconciled, as: :select, collection: [false, true], include_blank: false, default: false
   config.per_page = 10
+  config.sort_order = 'date'
 
   controller do
     def scoped_collection
@@ -13,7 +14,7 @@ ActiveAdmin.register Bill do
   end
 
   # INDEX
-  index pagination_total: false do
+  index do
     column Meal.model_name.human, :date, sortable: 'meals.date'
     column :reconciled
     column :resident, sortable: 'residents.name'

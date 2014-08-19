@@ -20,6 +20,8 @@
 class Bill < ActiveRecord::Base
   scope :unreconciled, -> { where(reconciled: false) }
 
+  default_scope { joins(:meal).order('meals.date DESC') }
+
   # ASSOCIATIONS
   belongs_to :meal, counter_cache: true
   belongs_to :resident
