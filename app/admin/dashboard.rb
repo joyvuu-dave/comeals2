@@ -2,7 +2,7 @@ ActiveAdmin.register_page 'Dashboard' do
 
   menu priority: 1, label: proc { I18n.t('active_admin.dashboard') }
 
-  content title: "Ave. cost / adult $#{Meal.average_cost_per_adult}" do
+  content title: 'Meal Reconciliation' do
 
     # Here is an example of a simple dashboard with columns and panels.
     columns do
@@ -27,7 +27,7 @@ ActiveAdmin.register_page 'Dashboard' do
       end
 
       column do
-        panel "Meals - #{Meal.count(true)}" do
+        panel "Meals - #{Meal.count(true)} (Ave. cost / adult $#{Meal.average_cost_per_adult})" do
           ul do
             Meal.order('date').map do |meal|
               li link_to(meal.date, meal_path(meal))
