@@ -50,6 +50,10 @@ class Meal < ActiveRecord::Base
     result * 2
   end
 
+  def number_of_bills
+    bills.count(true)
+  end
+
   def self.average_cost_per_adult
     cost_per_adult_sum = 0
     Meal.all.each do |i|

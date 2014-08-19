@@ -3,17 +3,17 @@
 
 
 $( ->
-  # Add day of week to dates on Meal index page
+  # Format day of week on Meal index page
   $('td.col-date').each( (index) ->
     if $(this).text()
       $(this).text(moment(new Date($(this).text())).format('ddd, MMM D YYYY'))
   )
 
 
-  # Add day of week to dates on Bill index page
+  # Format day of week on Bill index page
   $('td.col-meal').each( (index) ->
     if $(this).text()
-      $(this).text(moment(new Date($(this).text())).add('days', 1).format('ddd, MMM D YYYY'))
+      $(this).text(moment(new Date($(this).text())).format('ddd, MMM D YYYY'))
   )
 
 

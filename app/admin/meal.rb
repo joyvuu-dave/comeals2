@@ -16,6 +16,7 @@ ActiveAdmin.register Meal do
     column :cost_per_adult do |meal|
       number_with_precision((meal.cost_per_adult.to_f / 100), precision: 2) unless meal.cost_per_adult == 0
     end
+    column :number_of_bills, sortable: false
 
     actions
   end
