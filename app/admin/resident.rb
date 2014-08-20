@@ -54,6 +54,16 @@ ActiveAdmin.register Resident do
         column 'Guest Name' do |guest|
           li guest.name
         end
+        column 'Price Category', :multiplier do |guest|
+          if guest.multiplier == 2
+            'Adult'
+          elsif guest.multiplier == 1
+            'Child'
+          else
+            # Note: this would only be used if we allowed custom multiplier input
+            "Adult x #{number_with_precision((guest.multiplier.to_f / 2), precision: 1, strip_insignificant_zeros: true)}"
+          end
+        end
         column 'Meal Date' do |guest|
           link_to guest.meal.date, guest.meal
         end
