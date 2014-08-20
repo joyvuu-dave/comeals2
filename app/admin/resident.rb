@@ -50,6 +50,17 @@ ActiveAdmin.register Resident do
           number_to_currency(bill.amount.to_f / 100) unless bill.amount == 0
         end
       end
+      table_for resident.guests.all do
+        column 'Guest Name' do |guest|
+          li guest.name
+        end
+        column 'Meal Date' do |guest|
+          link_to guest.meal.date, guest.meal
+        end
+        column 'Cost Per Adult' do |guest|
+          number_to_currency(guest.meal.cost_per_adult.to_f / 100) unless guest.meal.cost_per_adult == 0
+        end
+      end
     end
   end
 
