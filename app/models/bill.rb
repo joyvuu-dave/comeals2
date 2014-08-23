@@ -2,14 +2,15 @@
 #
 # Table name: bills
 #
-#  id             :integer          not null, primary key
-#  meal_id        :integer          not null
-#  resident_id    :integer          not null
-#  amount         :integer          default(0), not null
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  amount_decimal :decimal(12, 2)   default(0.0), not null
-#  reconciled     :boolean          default(FALSE), not null
+#  id                :integer          not null, primary key
+#  meal_id           :integer          not null
+#  resident_id       :integer          not null
+#  amount            :integer          default(0), not null
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  amount_decimal    :decimal(12, 2)   default(0.0), not null
+#  reconciled        :boolean          default(FALSE), not null
+#  reconciliation_id :integer
 #
 # Indexes
 #
@@ -19,12 +20,14 @@
 
 class Bill < ActiveRecord::Base
   scope :unreconciled, -> { where(reconciled: false) }
+  scope :reconciled, -> { where(reconciled: true) }
 
   default_scope { joins(:meal).order('meals.date DESC') }
 
   # ASSOCIATIONS
   belongs_to :meal, counter_cache: true
   belongs_to :resident
+  belongs_to :reconciliation
 
   delegate :multiplier, to: :meal
   delegate :date, to: :meal
@@ -41,9 +44,18 @@ class Bill < ActiveRecord::Base
 
   # CALLBACKS
   before_save :set_amount
+  after_commit :set_reconciled # Note: putting this in a before_save callback causes operation to fail
 
   def set_amount
     self.amount = Integer(amount_decimal * 100)
+  end
+
+  def set_reconciled
+    if reconciliation.present?
+      update_column(:reconciled, true)
+    else
+      update_column(:reconciled, false)
+    end
   end
 
   # VIRTUAL ATTRIBUTE

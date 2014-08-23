@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140819092520) do
+ActiveRecord::Schema.define(version: 20140823195708) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,13 +39,14 @@ ActiveRecord::Schema.define(version: 20140819092520) do
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "bills", force: true do |t|
-    t.integer  "meal_id",                                                 null: false
-    t.integer  "resident_id",                                             null: false
-    t.integer  "amount",                                  default: 0,     null: false
-    t.datetime "created_at",                                              null: false
-    t.datetime "updated_at",                                              null: false
-    t.decimal  "amount_decimal", precision: 12, scale: 2, default: 0.0,   null: false
-    t.boolean  "reconciled",                              default: false, null: false
+    t.integer  "meal_id",                                                    null: false
+    t.integer  "resident_id",                                                null: false
+    t.integer  "amount",                                     default: 0,     null: false
+    t.datetime "created_at",                                                 null: false
+    t.datetime "updated_at",                                                 null: false
+    t.decimal  "amount_decimal",    precision: 12, scale: 2, default: 0.0,   null: false
+    t.boolean  "reconciled",                                 default: false, null: false
+    t.integer  "reconciliation_id"
   end
 
   add_index "bills", ["meal_id"], name: "index_bills_on_meal_id", using: :btree
@@ -93,6 +94,14 @@ ActiveRecord::Schema.define(version: 20140819092520) do
   end
 
   add_index "meals", ["date"], name: "index_meals_on_date", unique: true, using: :btree
+
+  create_table "reconciliations", force: true do |t|
+    t.date     "date",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "reconciliations", ["date"], name: "index_reconciliations_on_date", unique: true, using: :btree
 
   create_table "residents", force: true do |t|
     t.string   "name",                   null: false
