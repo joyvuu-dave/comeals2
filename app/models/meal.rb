@@ -12,6 +12,7 @@
 #
 #  index_meals_on_date  (date) UNIQUE
 #
+
 class Meal < ActiveRecord::Base
   # ASSOCIATIONS
   has_many :meal_residents, dependent: :destroy
@@ -37,6 +38,12 @@ class Meal < ActiveRecord::Base
     residents.sum('multiplier') + guests.sum('multiplier')
   end
 
+  def reconciled
+    # If there aren't any bills or any of the associated bills
+    # are unreconciled, then we treat this meal as unreconciled
+    bills_count > 0 && bills.all? { |b| b['reconciled'] == true }
+  end
+
   # TODO: add counter_culture
   def total_cost
     bills.sum('amount')
@@ -48,10 +55,6 @@ class Meal < ActiveRecord::Base
       result += bill.unit_cost
     end
     result * 2
-  end
-
-  def number_of_bills
-    bills.count(true)
   end
 
   def self.average_cost_per_adult
