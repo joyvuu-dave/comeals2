@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/gregbell/active_admin.git
-  revision: 35f2f8a934fe3fc3f35bac9d7e8b624d9236e04d
+  revision: 83059dc2894b7d887cb1a6061fbde741bd4d1854
   specs:
     activeadmin (1.0.0.pre)
       arbre (~> 1.0, >= 1.0.2)
@@ -148,7 +148,7 @@ GEM
     minitest (5.4.0)
     multi_json (1.10.1)
     netrc (0.7.7)
-    newrelic_rpm (3.9.2.239)
+    newrelic_rpm (3.9.3.241)
     orm_adapter (0.5.0)
     pg (0.17.1)
     polyamorous (1.1.0)
