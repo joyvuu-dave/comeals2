@@ -1,20 +1,5 @@
 class CreateInitialTables < ActiveRecord::Migration
   def change
-    create_table "active_admin_comments", force: true do |t|
-      t.string   "namespace"
-      t.text     "body"
-      t.string   "resource_id",   null: false
-      t.string   "resource_type", null: false
-      t.integer  "author_id"
-      t.string   "author_type"
-      t.datetime "created_at"
-      t.datetime "updated_at"
-    end
-
-    add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
-    add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
-    add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
-
     create_table "admin_users", force: true do |t|
       t.string   "email",                  default: "", null: false
       t.string   "encrypted_password",     default: "", null: false
@@ -28,22 +13,53 @@ class CreateInitialTables < ActiveRecord::Migration
       t.string   "last_sign_in_ip"
       t.datetime "created_at"
       t.datetime "updated_at"
+      t.string   "confirmation_token"
+      t.datetime "confirmed_at"
+      t.datetime "confirmation_sent_at"
     end
 
+    add_index "admin_users", ["confirmation_token"], name: "index_admin_users_on_confirmation_token", unique: true, using: :btree
     add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
     add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
     create_table "bills", force: true do |t|
-      t.integer  "meal_id",                                               null: false
-      t.integer  "resident_id",                                           null: false
-      t.integer  "amount",                                  default: 0,   null: false
-      t.datetime "created_at",                                            null: false
-      t.datetime "updated_at",                                            null: false
-      t.decimal  "amount_decimal", precision: 12, scale: 2, default: 0.0, null: false
+      t.integer  "meal_id",                                                    null: false
+      t.integer  "resident_id",                                                null: false
+      t.integer  "amount",                                     default: 0,     null: false
+      t.datetime "created_at",                                                 null: false
+      t.datetime "updated_at",                                                 null: false
+      t.decimal  "amount_decimal",    precision: 12, scale: 2, default: 0.0,   null: false
+      t.boolean  "reconciled",                                 default: false, null: false
+      t.integer  "reconciliation_id"
     end
 
     add_index "bills", ["meal_id"], name: "index_bills_on_meal_id", using: :btree
     add_index "bills", ["resident_id"], name: "index_bills_on_resident_id", using: :btree
+
+    create_table "friendly_id_slugs", force: true do |t|
+      t.string   "slug",                      null: false
+      t.integer  "sluggable_id",              null: false
+      t.string   "sluggable_type", limit: 50
+      t.string   "scope"
+      t.datetime "created_at"
+    end
+
+    add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+    add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+    add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+    add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+
+    create_table "guests", force: true do |t|
+      t.string   "name",                    null: false
+      t.integer  "multiplier",  default: 2, null: false
+      t.integer  "meal_id",                 null: false
+      t.integer  "resident_id",             null: false
+      t.datetime "created_at"
+      t.datetime "updated_at"
+    end
+
+    add_index "guests", ["meal_id"], name: "index_guests_on_meal_id", using: :btree
+    add_index "guests", ["resident_id"], name: "index_guests_on_resident_id", using: :btree
 
     create_table "meal_residents", force: true do |t|
       t.integer  "meal_id",     null: false
@@ -63,31 +79,36 @@ class CreateInitialTables < ActiveRecord::Migration
 
     add_index "meals", ["date"], name: "index_meals_on_date", unique: true, using: :btree
 
+    create_table "reconciliations", force: true do |t|
+      t.date     "date",       null: false
+      t.datetime "created_at"
+      t.datetime "updated_at"
+    end
+
+    add_index "reconciliations", ["date"], name: "index_reconciliations_on_date", unique: true, using: :btree
+
     create_table "residents", force: true do |t|
       t.string   "name",                   null: false
       t.integer  "multiplier", default: 2, null: false
       t.integer  "unit_id",                null: false
       t.datetime "created_at",             null: false
       t.datetime "updated_at",             null: false
+      t.string   "slug"
     end
 
     add_index "residents", ["name"], name: "index_residents_on_name", unique: true, using: :btree
+    add_index "residents", ["slug"], name: "index_residents_on_slug", unique: true, using: :btree
+    add_index "residents", ["unit_id"], name: "index_residents_on_unit_id", using: :btree
 
     create_table "units", force: true do |t|
       t.string   "name",                        null: false
       t.datetime "created_at",                  null: false
       t.datetime "updated_at",                  null: false
       t.integer  "residents_count", default: 0, null: false
+      t.string   "slug"
     end
 
     add_index "units", ["name"], name: "index_units_on_name", unique: true, using: :btree
-
-    add_foreign_key "bills", "meals", name: "bills_meal_id_fk"
-    add_foreign_key "bills", "residents", name: "bills_resident_id_fk"
-
-    add_foreign_key "meal_residents", "meals", name: "meal_residents_meal_id_fk"
-    add_foreign_key "meal_residents", "residents", name: "meal_residents_resident_id_fk"
-
-    add_foreign_key "residents", "units", name: "residents_unit_id_fk"
+    add_index "units", ["slug"], name: "index_units_on_slug", unique: true, using: :btree
   end
 end
