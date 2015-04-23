@@ -16,20 +16,20 @@ ActiveRecord::Schema.define(version: 20140531192123) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "admin_users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+  create_table "admin_users", force: :cascade do |t|
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                      default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "confirmation_token"
+    t.string   "confirmation_token",     limit: 255
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
   end
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20140531192123) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
-  create_table "bills", force: true do |t|
+  create_table "bills", force: :cascade do |t|
     t.integer  "meal_id",                                                    null: false
     t.integer  "resident_id",                                                null: false
     t.integer  "amount",                                     default: 0,     null: false
@@ -52,11 +52,11 @@ ActiveRecord::Schema.define(version: 20140531192123) do
   add_index "bills", ["meal_id"], name: "index_bills_on_meal_id", using: :btree
   add_index "bills", ["resident_id"], name: "index_bills_on_resident_id", using: :btree
 
-  create_table "friendly_id_slugs", force: true do |t|
-    t.string   "slug",                      null: false
-    t.integer  "sluggable_id",              null: false
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string   "slug",           limit: 255, null: false
+    t.integer  "sluggable_id",               null: false
     t.string   "sluggable_type", limit: 50
-    t.string   "scope"
+    t.string   "scope",          limit: 255
     t.datetime "created_at"
   end
 
@@ -65,11 +65,11 @@ ActiveRecord::Schema.define(version: 20140531192123) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
-  create_table "guests", force: true do |t|
-    t.string   "name",                    null: false
-    t.integer  "multiplier",  default: 2, null: false
-    t.integer  "meal_id",                 null: false
-    t.integer  "resident_id",             null: false
+  create_table "guests", force: :cascade do |t|
+    t.string   "name",        limit: 255,             null: false
+    t.integer  "multiplier",              default: 2, null: false
+    t.integer  "meal_id",                             null: false
+    t.integer  "resident_id",                         null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 20140531192123) do
   add_index "guests", ["meal_id"], name: "index_guests_on_meal_id", using: :btree
   add_index "guests", ["resident_id"], name: "index_guests_on_resident_id", using: :btree
 
-  create_table "meal_residents", force: true do |t|
+  create_table "meal_residents", force: :cascade do |t|
     t.integer  "meal_id",     null: false
     t.integer  "resident_id", null: false
     t.datetime "created_at",  null: false
@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 20140531192123) do
 
   add_index "meal_residents", ["meal_id", "resident_id"], name: "index_meal_residents_on_meal_id_and_resident_id", using: :btree
 
-  create_table "meals", force: true do |t|
+  create_table "meals", force: :cascade do |t|
     t.date     "date",                    null: false
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(version: 20140531192123) do
 
   add_index "meals", ["date"], name: "index_meals_on_date", unique: true, using: :btree
 
-  create_table "reconciliations", force: true do |t|
+  create_table "reconciliations", force: :cascade do |t|
     t.date     "date",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -103,25 +103,25 @@ ActiveRecord::Schema.define(version: 20140531192123) do
 
   add_index "reconciliations", ["date"], name: "index_reconciliations_on_date", unique: true, using: :btree
 
-  create_table "residents", force: true do |t|
-    t.string   "name",                   null: false
-    t.integer  "multiplier", default: 2, null: false
-    t.integer  "unit_id",                null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.string   "slug"
+  create_table "residents", force: :cascade do |t|
+    t.string   "name",       limit: 255,             null: false
+    t.integer  "multiplier",             default: 2, null: false
+    t.integer  "unit_id",                            null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.string   "slug",       limit: 255
   end
 
   add_index "residents", ["name"], name: "index_residents_on_name", unique: true, using: :btree
   add_index "residents", ["slug"], name: "index_residents_on_slug", unique: true, using: :btree
   add_index "residents", ["unit_id"], name: "index_residents_on_unit_id", using: :btree
 
-  create_table "units", force: true do |t|
-    t.string   "name",                        null: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.integer  "residents_count", default: 0, null: false
-    t.string   "slug"
+  create_table "units", force: :cascade do |t|
+    t.string   "name",            limit: 255,             null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.integer  "residents_count",             default: 0, null: false
+    t.string   "slug",            limit: 255
   end
 
   add_index "units", ["name"], name: "index_units_on_name", unique: true, using: :btree

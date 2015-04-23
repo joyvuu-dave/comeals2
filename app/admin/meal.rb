@@ -45,7 +45,7 @@ ActiveAdmin.register Meal do
       end
       table_for meal.bills.all do
         column 'Bills' do |bill|
-          link_to bill.resident.name, bill
+          link_to "#{bill.resident.name} - #{number_to_currency(bill.amount.to_f / 100)}", bill
         end
       end
     end
