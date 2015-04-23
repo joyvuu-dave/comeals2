@@ -1,15 +1,12 @@
 source 'https://rubygems.org'
 
-ruby '2.1.2'
+ruby '2.2.2'
 
-gem 'rails', '4.1.1' # FIXME: 4.1.2+ breaks app
-gem 'sass-rails', github: 'rails/sass-rails'
+gem 'rails'
+gem 'sass-rails'
 gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
-gem 'jbuilder', '~> 2.0'
-gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'pg'
 gem 'postmark-rails'
 gem 'coveralls', require: false
@@ -18,13 +15,14 @@ gem 'goldiloader' # automatic lazy eager loading
 gem 'active_model_serializers', github: 'rails-api/active_model_serializers', branch: '0-8-stable'
 gem 'rack-zippy'
 gem 'friendly_id'
+gem 'responders', '~> 2.0'
 
 # CACHE
 gem 'rack-cache'
 gem 'dalli'
 gem 'kgio'
 gem 'memcachier'
-gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'activeadmin', github: 'activeadmin'
 gem 'devise'
 
 group :production do
@@ -35,7 +33,7 @@ end
 
 group :development, :test do
   gem 'faker'
-  gem 'rspec-rails', '~> 3.0.1'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -50,6 +48,7 @@ group :development do
   gem 'bullet'
   gem 'ruby_gntp' # for growl v1.3+
   gem 'rack-mini-profiler', require: false
+  gem 'web-console', '~> 2.0'
 end
 
 group :test do

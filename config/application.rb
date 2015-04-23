@@ -24,5 +24,8 @@ module Comeals
 
     # http://robots.thoughtbot.com/content-compression-with-rack-deflater
     config.middleware.use Rack::Deflater
+
+    # http://edgeguides.rubyonrails.org/upgrading_ruby_on_rails.html#error-handling-in-transaction-callbacks
+    config.active_record.raise_in_transactional_callbacks = true
   end
 end

@@ -39,4 +39,7 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # http://edgeguides.rubyonrails.org/upgrading_ruby_on_rails.html#ordering-of-test-cases
+  config.active_support.test_order = :random
 end
