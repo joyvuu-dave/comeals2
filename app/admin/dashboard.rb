@@ -29,7 +29,7 @@ ActiveAdmin.register_page 'Dashboard' do
       column do
         panel "Meals - #{Meal.count(true)}" do
           ul do
-            Meal.order('date').map do |meal|
+            Meal.order('date DESC').map do |meal|
               li link_to(meal.date, meal_path(meal))
             end
           end

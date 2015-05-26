@@ -35,7 +35,7 @@ class Meal < ActiveRecord::Base
   end
 
   def multiplier
-    residents.sum('multiplier') + guests.sum('multiplier')
+    meal_residents.sum('multiplier') + guests.sum('multiplier')
   end
 
   def reconciled

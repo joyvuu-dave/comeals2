@@ -68,9 +68,9 @@ class Resident < ActiveRecord::Base
 
   def calculate_total_meal_costs
     result = 0
-    meals.each do |meal|
-      meal.bills.unreconciled.each do |bill|
-        result += multiplier * bill.unit_cost
+    meal_residents.each do |meal_resident|
+      meal_resident.meal.bills.unreconciled.each do |bill|
+        result += meal_resident.multiplier * bill.unit_cost
       end
     end
     result

@@ -21,4 +21,12 @@ class MealResident < ActiveRecord::Base
 
   # NO WHITESPACE
   strip_attributes
+
+  before_save :set_multiplier
+
+  private
+
+  def set_multiplier
+    self.multiplier = resident.multiplier
+  end
 end

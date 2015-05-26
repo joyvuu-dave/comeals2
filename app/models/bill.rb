@@ -44,7 +44,7 @@ class Bill < ActiveRecord::Base
 
   # CALLBACKS
   before_save :set_amount
-  after_commit :set_reconciled # Note: putting this in a before_save callback causes operation to fail
+  after_commit :set_reconciled, on: [:create, :update] # Note: putting this in a before_save callback causes operation to fail
 
   def set_amount
     self.amount = Integer(amount_decimal * 100)
