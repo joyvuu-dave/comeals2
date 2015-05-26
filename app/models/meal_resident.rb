@@ -7,11 +7,13 @@
 #  resident_id :integer          not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  multiplier  :integer          default(2), not null
 #
 # Indexes
 #
 #  index_meal_residents_on_meal_id_and_resident_id  (meal_id,resident_id)
 #
+
 class MealResident < ActiveRecord::Base
   # ASSOCIATIONS
   belongs_to :meal
