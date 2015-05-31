@@ -2,13 +2,15 @@
 #
 # Table name: residents
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)      not null
-#  multiplier :integer          default(2), not null
-#  unit_id    :integer          not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  slug       :string(255)
+#  id                 :integer          not null, primary key
+#  name               :string(255)      not null
+#  multiplier         :integer          default(2), not null
+#  unit_id            :integer          not null
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  slug               :string(255)
+#  balance            :integer          default(0), not null
+#  balance_updated_at :datetime
 #
 # Indexes
 #
@@ -26,7 +28,7 @@ class Resident < ActiveRecord::Base
   end
 
   # ASSOCIATIONS
-  belongs_to :unit, counter_cache: true
+  belongs_to :unit
 
   has_many :bills, dependent: :destroy
 
@@ -45,28 +47,30 @@ class Resident < ActiveRecord::Base
   validates :unit, presence: true
   validates :name, presence: true, uniqueness: true
 
-  # VIRTUAL ATTRIBUTE
-  def balance
-    sum_of_bills - total_meal_costs - total_guest_costs
+  def accurate_balance
+    if updated_at > balance_updated_at
+      set_balance
+      self.save!
+    end
+    balance
+  end
+
+  def set_balance
+    self.balance = sum_of_bills - total_meal_costs - total_guest_costs
+
+    time = Time.now
+    self.updated_at = time
+    self.balance_updated_at = time
   end
 
   private
 
   # HELPERS
-  # TODO: add counter_culture
   def sum_of_bills
     bills.unreconciled.sum('amount')
   end
 
   def total_meal_costs
-    @total_meal_costs ||= calculate_total_meal_costs
-  end
-
-  def total_guest_costs
-    @total_guest_costs ||= calculate_total_guest_costs
-  end
-
-  def calculate_total_meal_costs
     result = 0
     meal_residents.each do |meal_resident|
       meal_resident.meal.bills.unreconciled.each do |bill|
@@ -76,7 +80,7 @@ class Resident < ActiveRecord::Base
     result
   end
 
-  def calculate_total_guest_costs
+  def total_guest_costs
     result = 0
     guests.each do |guest|
       guest.meal.bills.unreconciled.each do |bill|

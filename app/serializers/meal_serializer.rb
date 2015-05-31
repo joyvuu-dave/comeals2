@@ -14,6 +14,7 @@
 #
 
 class MealSerializer < ActiveModel::Serializer
+  include ActionView::Helpers::NumberHelper
   attributes :id,
              :date,
 
@@ -21,4 +22,12 @@ class MealSerializer < ActiveModel::Serializer
              :number_of_attendees,
              :total_cost,
              :cost_per_adult
+
+  def total_cost
+    number_to_currency(object.total_cost.to_f / 100)
+  end
+
+  def cost_per_adult
+    number_to_currency(object.cost_per_adult.to_f / 100)
+  end
 end

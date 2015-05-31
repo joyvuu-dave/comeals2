@@ -15,11 +15,13 @@
 class Reconciliation < ActiveRecord::Base
   has_many :bills
 
+  # VALIDATIONS
+  validates :date, presence: true
+
+  # CALLBACKS
   before_validation :set_date
   after_save :reconcile_bills, on: :create # Note: needs to be an after_save so the id exists
   after_commit :unreconcile_bills, on: :destroy
-
-  validates :date, presence: true
 
   def set_date
     self.date = Time.now

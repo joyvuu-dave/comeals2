@@ -24,8 +24,8 @@ ActiveAdmin.register Resident do
       end
     end
     column :unit
-    column :balance do |resident|
-      number_to_currency(resident.balance.to_f / 100) unless resident.balance == 0
+    column 'Balance', :accurate_balance do |resident|
+      number_to_currency(resident.accurate_balance.to_f / 100) unless resident.accurate_balance == 0
     end
 
     actions

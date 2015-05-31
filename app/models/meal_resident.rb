@@ -17,11 +17,9 @@
 class MealResident < ActiveRecord::Base
   # ASSOCIATIONS
   belongs_to :meal
-  belongs_to :resident
+  belongs_to :resident, touch: true
 
-  # NO WHITESPACE
-  strip_attributes
-
+  # CALLBACKS
   before_save :set_multiplier
 
   private

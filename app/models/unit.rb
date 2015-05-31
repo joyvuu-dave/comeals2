@@ -38,14 +38,8 @@ class Unit < ActiveRecord::Base
   end
 
   def balance
-    @balance ||= calculate_balance
-  end
-
-  private
-
-  def calculate_balance
     sum = 0
-    residents.each do |resident|
+    residents.find_each do |resident|
       sum += resident.balance
     end
     sum

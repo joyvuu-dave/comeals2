@@ -18,7 +18,7 @@
 class Guest < ActiveRecord::Base
   # ASSOCIATIONS
   belongs_to :meal
-  belongs_to :resident
+  belongs_to :resident, touch: true
 
   # NO WHITESPACE
   strip_attributes

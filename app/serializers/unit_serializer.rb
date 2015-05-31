@@ -16,10 +16,15 @@
 #
 
 class UnitSerializer < ActiveModel::Serializer
+  include ActionView::Helpers::NumberHelper
   attributes :id,
              :name,
 
              # virtual attributes
              :balance,
              :number_of_occupants
+
+    def balance
+      number_to_currency(object.balance.to_f / 100)
+    end
 end

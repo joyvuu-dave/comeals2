@@ -25,18 +25,15 @@ class Bill < ActiveRecord::Base
   default_scope { joins(:meal).order('meals.date DESC') }
 
   # ASSOCIATIONS
-  belongs_to :meal, counter_cache: true
-  belongs_to :resident
+  belongs_to :meal, touch: true
+  belongs_to :resident, touch: true
   belongs_to :reconciliation
 
   delegate :multiplier, to: :meal
   delegate :date, to: :meal
   delegate :unit, to: :resident
 
-  # NO WHITESPACE
-  strip_attributes
-
-  # VALIDATION
+  # VALIDATIONS
   validates :meal, presence: true
   validates :resident, presence: true
   validates :amount_decimal, numericality: { greater_than_or_equal_to: 0.01 }

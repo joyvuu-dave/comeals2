@@ -15,13 +15,13 @@ gem 'goldiloader' # automatic lazy eager loading
 gem 'active_model_serializers', github: 'rails-api/active_model_serializers', branch: '0-8-stable'
 gem 'rack-zippy'
 gem 'friendly_id'
-gem 'responders', '~> 2.0'
 
 # CACHE
 gem 'rack-cache'
 gem 'dalli'
 gem 'kgio'
 gem 'memcachier'
+
 gem 'activeadmin', github: 'activeadmin'
 gem 'devise'
 

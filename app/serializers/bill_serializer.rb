@@ -19,13 +19,22 @@
 #
 
 class BillSerializer < ActiveModel::Serializer
+  include ActionView::Helpers::NumberHelper
   attributes :id,
              :amount,
+             :reconciled,
 
-             # delegated attributes
+             # delegated attribute
              :date,
-             :unit
 
-  # associated models
-  has_one :resident
+             # virtual attribute
+             :resident
+
+  def amount
+    number_to_currency(object.amount_decimal)
+  end
+
+  def resident
+    object.resident.name
+  end
 end

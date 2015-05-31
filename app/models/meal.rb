@@ -23,11 +23,16 @@ class Meal < ActiveRecord::Base
 
   accepts_nested_attributes_for :meal_residents, :guests, allow_destroy: true, reject_if: proc { |attributes| attributes['name'].blank? || attributes['resident_id'].blank? }
 
-  # NO WHITESPACE
-  strip_attributes
-
   # VALIDATIONS
   validates :date, presence: true, uniqueness: true
+
+  # CALLBACKS
+  after_commit :touch_meal_residents_and_guests
+
+  def touch_meal_residents_and_guests
+    meal_residents.find_each(&:touch)
+    guests.find_each(&:touch)
+  end
 
   # VIRTUAL ATTRIBUTES
   def number_of_attendees
