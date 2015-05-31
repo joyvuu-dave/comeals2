@@ -34,7 +34,7 @@ class Unit < ActiveRecord::Base
 
   # HELPERS
   def number_of_occupants
-    residents.size
+    residents.count
   end
 
   def balance

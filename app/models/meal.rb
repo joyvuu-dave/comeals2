@@ -36,7 +36,7 @@ class Meal < ActiveRecord::Base
 
   # VIRTUAL ATTRIBUTES
   def number_of_attendees
-    residents.size + guests.size
+    residents.count + guests.count
   end
 
   def multiplier
