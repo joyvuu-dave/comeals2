@@ -48,7 +48,7 @@ class Resident < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
 
   def accurate_balance
-    if updated_at > balance_updated_at
+    if balance_updated_at.blank? || updated_at > balance_updated_at
       set_balance
       self.save!
     end
