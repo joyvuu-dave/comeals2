@@ -24,6 +24,7 @@ gem 'memcachier'
 
 gem 'activeadmin', github: 'activeadmin'
 gem 'devise'
+gem 'sidekiq'
 
 group :production do
   gem 'rails_12factor'
