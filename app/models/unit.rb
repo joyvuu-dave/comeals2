@@ -40,7 +40,7 @@ class Unit < ActiveRecord::Base
   def balance
     sum = 0
     residents.find_each do |resident|
-      sum += resident.balance
+      sum += resident.accurate_balance
     end
     sum
   end

@@ -30,9 +30,12 @@ class Reconciliation < ActiveRecord::Base
   def reconcile_bills
     Bill.unreconciled.find_each do |i|
       i.update_columns(reconciliation_id: id, reconciled: true)
-      i.delay.touch
+      i.touch
     end
   end
+  handle_asynchronously :reconcile_bills
+
+
 
   def unreconcile_bills
     bills.find_each do |i|
