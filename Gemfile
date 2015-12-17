@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.2.2'
+ruby '2.2.3'
 
 gem 'rails'
 gem 'sass-rails'
@@ -13,7 +13,6 @@ gem 'coveralls', require: false
 gem 'strip_attributes'
 gem 'goldiloader' # automatic lazy eager loading
 gem 'active_model_serializers', github: 'rails-api/active_model_serializers', branch: '0-8-stable'
-gem 'rack-zippy'
 gem 'friendly_id'
 
 # CACHE

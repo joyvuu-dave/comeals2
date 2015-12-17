@@ -3,6 +3,13 @@ ActiveAdmin.register Reconciliation do
   config.filters = false
   config.per_page = 10
 
+  # INDEX
+  index do
+    column :date
+    column :number_of_meals, sortable: false
+  end
+
+  # FORM
   form do |f|
     f.actions
     f.semantic_errors

@@ -35,12 +35,14 @@ class Reconciliation < ActiveRecord::Base
   end
   handle_asynchronously :reconcile_bills
 
-
-
   def unreconcile_bills
     bills.find_each do |i|
       i.update_columns(reconciliation_id: nil, reconciled: false)
       i.delay.touch
     end
+  end
+
+  def number_of_meals
+    Bill.where(reconciliation_id: id).pluck(:date).uniq.count
   end
 end
