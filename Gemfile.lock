@@ -320,7 +320,7 @@ DEPENDENCIES
   quiet_assets
   rack-cache
   rack-mini-profiler
-  rails
+  rails (~> 4.2)
   rails_12factor
   rake
   rspec-rails
