@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.2.3'
+ruby '2.3.1'
 
 gem 'rails'
 gem 'sass-rails'
@@ -48,7 +48,7 @@ group :development do
   gem 'bullet'
   gem 'ruby_gntp' # for growl v1.3+
   gem 'rack-mini-profiler', require: false
-  gem 'web-console', '~> 2.0'
+  gem 'web-console', '~> 3.0'
 end
 
 group :test do

@@ -3,7 +3,7 @@
 # Table name: guests
 #
 #  id          :integer          not null, primary key
-#  name        :string(255)      not null
+#  name        :string           not null
 #  multiplier  :integer          default(2), not null
 #  meal_id     :integer          not null
 #  resident_id :integer          not null
