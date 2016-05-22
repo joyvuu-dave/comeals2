@@ -17,7 +17,7 @@ ActiveAdmin.register Meal do
     column :cost_per_adult do |meal|
       number_to_currency(meal.cost_per_adult.to_f / 100) unless meal.cost_per_adult == 0
     end
-    column 'Number of Bills', :bills_count
+    column 'Number of Bills', :number_of_bills
     column :reconciled, sortable: false
 
     actions

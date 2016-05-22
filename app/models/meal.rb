@@ -35,6 +35,11 @@ class Meal < ActiveRecord::Base
   end
 
   # VIRTUAL ATTRIBUTES
+  # TODO: use counter cache
+  def number_of_bills
+    bills.count
+  end
+
   def number_of_attendees
     residents.count + guests.count
   end
