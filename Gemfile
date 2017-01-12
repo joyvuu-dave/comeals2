@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.3.1'
+ruby '2.3.3'
 
 gem 'rails', '~> 4.2'
 gem 'sass-rails'
@@ -14,6 +14,7 @@ gem 'strip_attributes'
 gem 'goldiloader' # automatic lazy eager loading
 gem 'active_model_serializers', github: 'rails-api/active_model_serializers', branch: '0-8-stable'
 gem 'friendly_id'
+gem 'thin'
 
 # CACHE
 gem 'rack-cache'
@@ -27,7 +28,6 @@ gem 'delayed_job_active_record'
 
 group :production do
   gem 'rails_12factor'
-  gem 'thin'
   gem 'newrelic_rpm'
 end
 

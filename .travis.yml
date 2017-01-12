@@ -1,7 +1,7 @@
 language: ruby
 bundler_args: "--without production"
 rvm:
-- 2.3.1
+- 2.3.3
 before_script:
 - psql -c 'create database comeals_test;' -U postgres
 - bundle exec rake db:schema:load
