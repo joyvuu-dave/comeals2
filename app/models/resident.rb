@@ -28,7 +28,7 @@ class Resident < ActiveRecord::Base
   end
 
   # ASSOCIATIONS
-  belongs_to :unit
+  belongs_to :unit, counter_cache: true
 
   has_many :bills, dependent: :destroy
 
