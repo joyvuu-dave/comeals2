@@ -25,7 +25,7 @@ class Bill < ActiveRecord::Base
   default_scope { joins(:meal).order('meals.date DESC') }
 
   # ASSOCIATIONS
-  belongs_to :meal, touch: true
+  belongs_to :meal, touch: true, counter_cache: true
   belongs_to :resident, touch: true
   belongs_to :reconciliation
 

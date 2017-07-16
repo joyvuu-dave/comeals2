@@ -1,18 +1,18 @@
 source 'https://rubygems.org'
 
-ruby '2.3.3'
+ruby '2.4.1'
 
 gem 'rails', '~> 4.2'
 gem 'sass-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'turbolinks'
-gem 'pg'
+gem 'pg', '0.20'
 gem 'postmark-rails'
 gem 'coveralls', require: false
 gem 'strip_attributes'
 gem 'goldiloader' # automatic lazy eager loading
-gem 'active_model_serializers', github: 'rails-api/active_model_serializers', branch: '0-8-stable'
+gem 'active_model_serializers', '~> 0.8'
 gem 'friendly_id'
 gem 'thin'
 
@@ -22,7 +22,7 @@ gem 'dalli'
 gem 'kgio'
 gem 'memcachier'
 
-gem 'activeadmin', github: 'activeadmin'
+gem 'activeadmin'
 gem 'devise'
 gem 'delayed_job_active_record'
 
