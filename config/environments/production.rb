@@ -46,7 +46,7 @@ Rails.application.configure do
   # config.force_ssl = true
 
   # http://edgeguides.rubyonrails.org/upgrading_ruby_on_rails.html#production-log-level
-  config.log_level = :debug
+  config.log_level = :info
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
